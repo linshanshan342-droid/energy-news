@@ -3,40 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>能源资讯日报</title>
+<title>能源资讯日报 - 6月4日 · 周四</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI Emoji", "Apple Color Emoji", sans-serif; background: #f0f2f5; padding: 30px 20px 60px; color: #1a1a2e; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f0f2f5; padding: 30px 20px 60px; color: #1a1a2e; }
   .container { max-width: 1200px; margin: 0 auto; }
-  .top-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+  .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
   .logo { font-size: 26px; font-weight: 800; background: linear-gradient(135deg, #e74c3c, #f39c12); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .logo span { font-size: 14px; -webkit-text-fill-color: #999; font-weight: 400; }
-  .update-info { text-align: right; font-size: 12px; color: #999; margin-bottom: 20px; }
-  .tips-bar { background: #fff8e1; border-radius: 12px; padding: 12px 18px; margin-bottom: 20px; border: 1px solid #ffe082; font-size: 13px; line-height: 1.7; color: #6d5200; }
-  .tips-bar strong { font-weight: 700; }
-  .dim-bar { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 14px; font-size: 11px; line-height: 1.5; display: flex; flex-wrap: wrap; align-items: center; gap: 3px 10px; }
-  .dim-bar strong { font-weight: 600; }
-  .dim-bar .dim-item { display: inline-block; padding: 1px 6px; border-radius: 4px; background: rgba(255,255,255,0.08); white-space: nowrap; }
-  .dim-bar .dim-item strong { color: #f0c27f; }
   .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #e0e0e0; }
   .day-header h2 { font-size: 22px; font-weight: 700; }
   .day-header .badge { display: inline-block; padding: 4px 14px; border-radius: 16px; background: #1a1a2e; color: #fff; font-size: 13px; font-weight: 600; }
   .section-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
-  .tab-bar { display: flex; gap: 0; margin-bottom: 16px; background: #e8e8e8; border-radius: 10px; overflow: hidden; width: fit-content; }
-  .tab-bar button { padding: 10px 24px; border: none; background: transparent; cursor: pointer; font-size: 14px; font-weight: 600; color: #666; }
-  .tab-bar button.active { background: #fff; color: #1a1a2e; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-  .tab-bar button:hover:not(.active) { color: #333; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
   .card { background: #fff; border-radius: 16px; padding: 20px 24px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 5px solid #ddd; }
   .card.r1 { border-left-color: #e74c3c; } .card.r2 { border-left-color: #e67e22; } .card.r3 { border-left-color: #f1c40f; }
-  .card.r4 { border-left-color: #3498db; } .card.r5 { border-left-color: #2ecc71; } .card.r6 { border-left-color: #9b59b6; }
-  .card.r7 { border-left-color: #1abc9c; } .card.r8 { border-left-color: #e84393; } .card.r9 { border-left-color: #fd79a8; } .card.r10 { border-left-color: #636e72; }
+  .card.r4 { border-left-color: #3498db; } .card.r5 { border-left-color: #2ecc71; }
   .card-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .rank { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff; flex-shrink: 0; }
   .r1 .rank { background: #e74c3c; } .r2 .rank { background: #e67e22; } .r3 .rank { background: #f1c40f; color: #333; }
-  .r4 .rank { background: #3498db; } .r5 .rank { background: #2ecc71; } .r6 .rank { background: #9b59b6; }
-  .r7 .rank { background: #1abc9c; } .r8 .rank { background: #e84393; } .r9 .rank { background: #fd79a8; } .r10 .rank { background: #636e72; }
+  .r4 .rank { background: #3498db; } .r5 .rank { background: #2ecc71; }
   .card-title { font-size: 16px; font-weight: 700; line-height: 1.4; }
   .card-title .tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 8px; margin-left: 6px; vertical-align: middle; font-weight: 600; }
   .tag.hot { background: #ffe0e0; color: #e74c3c; }
@@ -47,78 +32,31 @@
   .card-meta .dt { background: #ffebee; color: #c62828; font-weight: 700; }
   .card-meta .vid { background: #e8f5e9; color: #2e7d32; font-weight: 600; }
   .card-body { font-size: 13.5px; line-height: 1.7; color: #444; }
-  .card-body strong { color: #1a1a2e; }
   .card-body ul { margin: 6px 0 0 16px; list-style: none; }
-  .card-body ul li::before { content: "• "; color: #999; }
+  .card-body ul li::before { content: "\2022 "; color: #999; }
   .card-body ul li { margin-bottom: 3px; }
   .ref-links { margin-top: 8px; font-size: 12px; line-height: 1.8; }
   .ref-links a { color: #2563eb; text-decoration: underline; font-size: 12px; cursor: pointer; }
   .ref-links a:hover { color: #1d4ed8; }
   .note-box { margin-top: 8px; padding: 6px 10px; border: 1px dashed #ccc; border-radius: 6px; font-size: 12px; color: #999; background: #fafafa; min-height: 30px; cursor: text; line-height: 1.5; }
-  .note-box:empty:before { content: "\✏️ 点击添加备注..."; color: #bbb; }
-  .data-box { background: #fff; border-radius: 16px; padding: 20px 24px; margin-top: 16px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-  .data-box h3 { font-size: 17px; margin-bottom: 12px; }
-  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .data-table th { background: #1a1a2e; color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; }
-  .data-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
-  .data-table .num { font-weight: 700; color: #e74c3c; }
-  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
-  .video-tag { padding: 12px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; text-align: center; color: #fff; }
-  .video-tag .sub { display: block; font-size: 11px; margin-top: 4px; opacity: 0.9; font-weight: 400; }
-  .vt-red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
-  .vt-orange { background: linear-gradient(135deg, #e67e22, #d35400); }
-  .vt-blue { background: linear-gradient(135deg, #3498db, #2980b9); }
-  .vt-pink { background: linear-gradient(135deg, #e84393, #d63384); }
-  .date-nav-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding: 8px 14px; background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-  .date-nav-btn { background: none; border: 1px solid #ddd; border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 14px; color: #555; }
-  .date-nav-btn:hover { background: #f0f0f0; }
-  .date-nav-label { font-size: 15px; font-weight: 600; min-width: 130px; text-align: center; }
-  .date-nav-select { font-size: 12px; padding: 4px 8px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; outline: none; }
-  .day-content { display: block; }
+  .note-box:empty:before { content: "\270f️ 点击添加备注..."; color: #bbb; }
   .footer { text-align: center; color: #999; font-size: 12px; margin-top: 30px; padding: 20px 0 10px; border-top: 1px solid #e0e0e0; }
-  @media (max-width: 600px) { body { padding: 16px 10px; } .logo { font-size: 20px; } .card { padding: 14px 16px; } .card-title { font-size: 14px; } .video-grid { grid-template-columns: 1fr 1fr; } .dim-bar { font-size: 10px; padding: 6px 8px; gap: 2px 6px; } .dim-bar .dim-item { padding: 1px 4px; font-size: 9px; } }
 </style>
 </head>
 <body>
 <div class="container">
 
 <div class="top-bar">
-  <div class="logo">🛢️ 能源资讯日报 <span>每天打开，一览全局</span></div>
+  <div class="logo">🛢️ 能源资讯日报 <span>6月4日 · 周四</span></div>
 </div>
 
-<div class="update-info">🔄 更新时间：2026年6月4日 · 近7天趋势：5月28日 ~ 6月4日</div>
-
-<div class="tips-bar">
-  <strong>📌 使用说明：</strong>
-  每条新闻下方 <strong>✏️ 备注框</strong> 可点击编辑保存 · 点击 <strong>蓝色链接</strong> 查看原文
+<div class="day-header">
+  <h2>📅 2026年6月4日</h2>
+  <span class="badge">6月4日 · 周四</span>
 </div>
 
-<div class="dim-bar">
-  <strong>📊 新闻评定纬度：</strong>
-  <span class="dim-item"><strong>🎯 Tavily评分</strong> — 搜索引擎按相关性与时效性计算的客观分数（0~1.00）</span>
-  <span class="dim-item"><strong>🔥 国内热度</strong> — 国内媒体与社交平台讨论量</span>
-  <span class="dim-item"><strong>🌏 国际关注</strong> — 外媒覆盖程度</span>
-  <span class="dim-item"><strong>💡 独家性</strong> — 首次披露 vs 后续转载</span>
-  <span class="dim-item"><strong>📊 综合评级</strong> — 四项加权总评</span>
-</div>
+<h3 class="section-title">📋 每日TOP5</h3>
 
-<div class="tab-bar">
-  <button class="active" onclick="switchTab(this, 'tabDaily')">📋 每日TOP5</button>
-  <button onclick="switchTab(this, 'tabWeekly')">📊 7天趋势TOP10</button>
-</div>
-
-<!-- ===== 每日TOP5 ===== -->
-<div class="tab-content active" id="tabDaily">
-
-<div class="date-nav-bar">
-  <button class="date-nav-btn" onclick="switchDailyDate(-1)">◀</button>
-  <span class="date-nav-label" id="dailyDateLabel">6月4日 · 周四</span>
-  <button class="date-nav-btn" onclick="switchDailyDate(1)">▶</button>
-  <select class="date-nav-select" id="dailyDateSelect" onchange="goToDailyDate(this.value)"></select>
-</div>
-
-<div class="day-content" 
-data-date="2026-06-04">
 
 <div class="card r1">
   <div class="card-hd"><div class="rank">1</div><div class="card-title">美国原油库存暴跌至警戒线，油价面临新一轮上行压力 <span class="tag hot">🔥 热度最高</span></div></div>
@@ -208,306 +146,13 @@ data-date="2026-06-04">
     <div class="ref-links">📎 <a href="https://www.cnn.com/2026/06/03/business/iran-oil-peak-demand" target="_blank">CNN — 石油需求或已见顶</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
-<div class="data-box">
-  <h3>🎬 <div class="data-box">
-  <h3>📊 核心数据速览</h3>
-  <table class="data-table">
-    <thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead>
-    <tbody>
-      <tr><td>美国原油库存</td><td class="num">持续暴跌，接近警戒线</td><td>EIA/OilPrice</td></tr>
-      <tr><td>黎以停火</td><td class="num">双方同意实施停火协议</td><td>路透社</td></tr>
-      <tr><td>布伦特原油</td><td class="num">百元附近震荡</td><td>路透社</td></tr>
-      <tr><td>伊朗战争致供应下线</td><td class="num">约1400万桶/日</td><td>Vitol/路透社</td></tr>
-    </tbody>
-  </table>
-</div>
 
-短视频选题建议</h3>
-  <div class="video-grid">
-    <div class="video-tag vt-red">
-
-美国库存暴跌，油价要起飞？<span class="sub">⭐⭐⭐⭐⭐ 财经新闻</span></div>
-    <div class="video-tag vt-orange">黎以停火！油价能降多少？<span class="sub">⭐⭐⭐⭐⭐ 新闻资讯</span></div>
-    <div class="video-tag vt-orange">美国石油大佬喊话政府<span class="sub">⭐⭐⭐⭐ 财经人物</span></div>
-    <div class="video-tag vt-blue">伊朗战争逼着全世界搞新能源<span class="sub">⭐⭐⭐⭐ 能源科普</span></div>
-    <div class="video-tag vt-pink">石油需求可能已经见顶了<span class="sub">⭐⭐⭐ 泛知识</span></div>
-  </div>
-</div>
-</div>
-
-</div>
-
-<div class="day-content" 
-<div class="day-content" 
-<div class="day-content" 
-<!-- ===== 7天趋势TOP10 ===== -->
-<div class="tab-content" id="tabWeekly">
-<div class="day-header">
-  <h2>📊 7天趋势TOP10</h2>
-  <span class="badge">5月28日 ~ 6月4日</span>
-</div>
-
-<h3 class="section-title">📊 7天趋势TOP10</h3>
-
-<div class="card r1">
-  <div class="card-hd"><div class="rank">1</div><div class="card-title">中国暂停大量原油进口，成为全球油价"隐形稳定器" <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 路透社 / 财富杂志</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>中国5月海路原油进口暴跌至近10年最低水平。分析认为，中国通过消耗地下战略石油储备替代进口，无形中充当了全球油价的稳定器。但分析师警告，这一策略可能在数周内耗尽储备空间。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>中国进口策略正在重塑全球油价走势</li>
-      <li><strong>短视频建议：</strong>"中国不买油了？全球油价靠中国撑着"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://fortune.com/2026/05/31/oil-prices-mystery-supply-iran-war-inventories-china-stockpiles-refinery-imports/" target="_blank">财富杂志 — 中国进口骤降</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r2">
-  <div class="card-hd"><div class="rank">2</div><div class="card-title">伊朗停止与美国谈判，宣称将"完全封锁"霍尔木兹海峡 <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 CNBC</span>
-    <span class="dt">📅 6月1日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月1日伊朗国家通讯社报道，伊方谈判代表停止通过中间人与美国交换信息，以抗议以色列在黎巴嫩和加沙的军事行动。伊朗明确表态将<strong>"完全封锁霍尔木兹海峡"</strong>。消息一出原油期货立刻飙升，停火希望大幅破灭。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>海峡完全封锁将切断全球20%能源运输</li>
-      <li><strong>短视频建议：</strong>"刚刚谈得好好的，伊朗突然翻脸了"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://www.cnbc.com/2026/06/01/iran-us-negotiations-strait-of-hormuz.html" target="_blank">CNBC — 伊朗停止谈判</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r3">
-  <div class="card-hd"><div class="rank">3</div><div class="card-title">中国战略石油储备释放——隐藏的"价格稳定器" <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财富杂志</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>中国大幅减少进口但国内未出现严重油荒。分析认为中国正在大量释放地下战略石油储备。去年大量购油补储推高油价，如今释放储备则在无形中充当了全球油价的稳定器。SPR能撑多久是市场核心悬念。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>储备耗尽后中国将被迫大量采购，可能引爆油价</li>
-      <li><strong>短视频建议：</strong>"中国的地下石油金库，到底能撑多少天？"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://fortune.com/2026/05/31/oil-prices-mystery-supply-iran-war-inventories-china-stockpiles-refinery-imports/" target="_blank">财富杂志 — 中国SPR深度报道</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r4">
-  <div class="card-hd"><div class="rank">4</div><div class="card-title">分析师三度上调2026年油价预测——布伦特从63涨至90美元以上 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 CNBC</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>路透社调查显示，分析师第三次上调2026年油价预测。布伦特原油从战前63.85美元上调约40%，假设霍尔木兹海峡持续关闭至7月底，油价可能进一步攀升。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>上调40%意味着中国年进口成本增加数千亿元</li>
-      <li><strong>短视频建议：</strong>"油价从63到90，只用了三个月"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://www.cnbc.com/2026/05/29/oil-prices-iran-ceasefire-us-trump-strait-hormuz-energy-costs.html" target="_blank">CNBC — 油价预测上调</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r5">
-  <div class="card-hd"><div class="rank">5</div><div class="card-title">埃克森美孚警告：石油库存将降至"前所未有"的危险水平 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 休斯顿纪事报</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>埃克森美孚高级副总裁Neil Chapman发出重磅警告：全球石油库存正在快速消耗，可能在数周内降至"前所未有"的危险水平，届时油价将暴涨。Chapman在纽约会议上表示："我们正在接近闻所未闻的库存水平，一旦到了那个点，油价就会飙升。"</p>
-    <ul>
-      <li><strong>为什么重要：</strong>全球最大油企之一的警告分量极重</li>
-      <li><strong>短视频建议：</strong>"埃克森美孚警告：几周后油价将……"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://www.chron.com/news/houston-texas/article/exxonmobil-oil-prices-22282710.php" target="_blank">休斯顿纪事报 — 埃克森警告</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r6">
-  <div class="card-hd"><div class="rank">6</div><div class="card-title">中国苯乙烯出口创历史新高——印度成最大买家</div></div>
-  <div class="card-meta">
-    <span class="src">📰 ICIS</span>
-    <span class="dt">📅 5月28日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>中国4月苯乙烯出口飙至历史新高19.54万吨，印度吸收41%成为最大买家。霍尔木兹海峡关闭导致中东化工供应中断，全球供应链正在重构，中国化工产业全球替代效应显现。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>中国化工产业借机抢占全球市场份额</li>
-      <li><strong>短视频建议：</strong>"海峡一堵，中国化工出口爆了"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://www.icis.com/explore/resources/news/2026/05/28/11212115/apic-26-china-sm-exports-hit-record-high-in-april-with-india-as-biggest-buyer" target="_blank">ICIS — 苯乙烯出口新高</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r7">
-  <div class="card-hd"><div class="rank">7</div><div class="card-title">美国原油库存暴跌至警戒线，石油行业发出紧急警告 <span class="tag hot">🔥 今日新增</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 OilPrice / E&E News</span>
-    <span class="dt">📅 6月4日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月4日，EIA数据显示美国原油库存以惊人速度下降。石油行业同时向政府发出警告：库存已降至"油箱底部"，若霍尔木兹危机持续，夏季汽油价格可能大幅飙升。市场担忧全球最后的供应缓冲正在消失。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>美国库存见底意味着全球石油市场失去最后一道防线</li>
-      <li><strong>短视频建议：</strong>"美国原油库存见底，油价要爆了"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://oilprice.com/Energy/Crude-Oil/US-Crude-Oil-Inventories-in-Freefall-EIA.html" target="_blank">OilPrice — 美国库存暴跌</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r8">
-  <div class="card-hd"><div class="rank">8</div><div class="card-title">伊朗战争冲击全球能源转型，亚欧加速新能源布局 <span class="tag hot">🔥 今日新增</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 彭博社</span>
-    <span class="dt">📅 6月4日首发</span>
-    <span class="vid">✅ 比较适合</span>
-  </div>
-  <div class="card-body">
-    <p>彭博社报告指出，伊朗战争引发的高油价正在加速亚洲和欧洲的能源转型。太阳能和风能的经济性大幅提升，多国政府加大清洁能源投资。分析师认为这场危机可能成为全球能源转型的催化剂。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>中国作为新能源制造大国可能从中受益</li>
-      <li><strong>短视频建议：</strong>"伊朗战争逼着全世界搞新能源"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://www.bloomberg.com/graphics/2026-energy-transition-iran-war/" target="_blank">彭博社 — 能源转型加速</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r9">
-  <div class="card-hd"><div class="rank">9</div><div class="card-title">石油超级巨头警告：油价可能几周内冲上160美元</div></div>
-  <div class="card-meta">
-    <span class="src">📰 OilPrice.com</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>某国际石油超级巨头警告：若霍尔木兹海峡不能短期重开，油价可能在数周内飙升至160美元/桶。这一极端情景将对中国经济造成巨大冲击。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>160美元极端情景将大幅推高中国进口成本</li>
-      <li><strong>短视频建议：</strong>"油价会到160吗？"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://oilprice.com/Energy/Oil-Prices/Supermajor-Warns-Oil-Prices-Could-Hit-160-Within-Weeks.html" target="_blank">OilPrice — 油价可能冲160</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r10">
-  <div class="card-hd"><div class="rank">10</div><div class="card-title">多艘船只在霍尔木兹海峡遇袭——雪佛龙CEO确认</div></div>
-  <div class="card-meta">
-    <span class="src">📰 OilPrice.com</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>雪佛龙CEO确认多艘船只在霍尔木兹海峡遇袭。以色列扩大对黎巴嫩进攻，中东多线冲突持续升温，航运安全形势严峻。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>船只遇袭直接威胁航运安全和保险费用</li>
-      <li><strong>短视频建议：</strong>"中国商船还安全吗？"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://oilprice.com/Latest-Energy-News/World-News/Chevron-CEO-Multiple-Ships-Attacked-In-Strait-of-Hormuz.html" target="_blank">OilPrice — 霍尔木兹船只遇袭</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="data-box">
-  <h3>📊 核心数据速览</h3>
-  <table class="data-table">
-    <thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead>
-    <tbody>
-      <tr><td>布伦特原油</td><td class="num">百元附近震荡</td><td>路透社</td></tr>
-      <tr><td>伊朗战争致供应下线</td><td class="num">约1400万桶/日</td><td>Vitol</td></tr>
-      <tr><td>美国原油库存</td><td class="num">持续暴跌，接近警戒线</td><td>EIA</td></tr>
-      <tr><td>中国原油进口</td><td class="num">降至近10年最低</td><td>路透社</td></tr>
-    </tbody>
-  </table>
-</div>
-短视频选题建议排行 ===== -->
-<div class="data-box">
-  <h3>🎬 短视频选题建议排行</h3>
-  <div class="video-grid">
-    <div class="video-tag vt-red">中国为什么不买油了？<span class="sub">⭐⭐⭐⭐⭐ 财经科普</span></div>
-    <div class="video-tag vt-orange">伊朗停止谈判封锁海峡<span class="sub">⭐⭐⭐⭐⭐ 新闻资讯</span></div>
-    <div class="video-tag vt-orange">美国原油库存见底预警<span class="sub">⭐⭐⭐⭐⭐ 财经新闻</span></div>
-    <div class="video-tag vt-blue">中国地下石油金库能撑多久？<span class="sub">⭐⭐⭐⭐ 科普揭秘</span></div>
-    <div class="video-tag vt-blue">黎以停火油价能降吗？<span class="sub">⭐⭐⭐⭐ 新闻解读</span></div>
-    <div class="video-tag vt-blue">海峡一堵化工出口爆了<span class="sub">⭐⭐⭐⭐ 财经产业</span></div>
-    <div class="video-tag vt-blue">油价会冲到160吗？<span class="sub">⭐⭐⭐⭐ 泛知识</span></div>
-    <div class="video-tag vt-pink">伊朗战争逼着全球搞新能源<span class="sub">⭐⭐⭐ 能源分析</span></div>
-  </div>
-</div>
-
-</div>
 
 <div class="footer">
-  能源资讯日报 · 每日更新 · 数据来源：Tavily Search API · 仅供参考
+  能源资讯日报 · 每日更新 · 仅供参考
 </div>
 
 </div>
-
-<script>
-
-var dailyDates = ["2026-06-04"];
-var dailyLabels = {"2026-06-04": "6月04日"};
-var dailyIndex = 0;
-
-function switchDailyDate(dir) {
-  var idx = dailyIndex + dir;
-  if (idx < 0 || idx >= dailyDates.length) return;
-  dailyIndex = idx;
-  showDate(dailyDates[dailyIndex]);
-}
-
-function goToDailyDate(date) {
-  var idx = dailyDates.indexOf(date);
-  if (idx >= 0) { dailyIndex = idx; showDate(date); }
-}
-
-function showDate(date) {
-  document.getElementById("dailyDateLabel").innerHTML = dailyLabels[date] || date;
-  document.getElementById("dailyDateSelect").value = date;
-  var all = document.querySelectorAll("[data-date]");
-  for (var i = 0; i < all.length; i++) {
-    all[i].style.display = all[i].getAttribute("data-date") === date ? "block" : "none";
-  }
-}
-
-(function() {
-  var sel = document.getElementById("dailyDateSelect");
-  for (var i = 0; i < dailyDates.length; i++) {
-    var opt = document.createElement("option");
-    opt.value = dailyDates[i];
-    opt.innerHTML = dailyLabels[dailyDates[i]] || dailyDates[i];
-    sel.appendChild(opt);
-  }
-  showDate(dailyDates[0]);
-})();
-
-function switchTab(btn, tabId) {
-  document.querySelectorAll(".tab-bar button").forEach(function(b) { b.classList.remove("active"); });
-  document.querySelectorAll(".tab-content").forEach(function(t) { t.classList.remove("active"); });
-  btn.classList.add("active");
-  document.getElementById(tabId).classList.add("active");
-}
-</script>
+</div>
 </body>
 </html>
