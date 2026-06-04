@@ -355,25 +355,6 @@
 </div>
 
 </div>
-data-date="2026-06-02">
-
-<div class="card r1">
-  <div class="card-hd"><div class="rank">1</div><div class="card-title">Vitol警告：石油市场低估风险，中国恢复进口将引爆油价 <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 World Oil</span>
-    <span class="dt">📅 6月2日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月2日，全球最大独立石油交易商<strong>Vitol</strong>的巴林董事Tom Baker在伦敦S&P Global能源会议上发出重磅警告：石油市场正在<strong>低估伊朗战争的风险</strong>。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>Vitol是全球最大石油交易商，其判断直接影响市场预期</li>
-      <li><strong>短视频建议：</strong>"全球最大石油贩子发话：中国不买油只是暂时的"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://worldoil.com/news/2026/6/2/vitol-executive-warns-west-is-asleep-at-the-wheel-on-oil-supply-crisis/" target="_blank">World Oil — Vitol警告</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
 
 <div class="card r2">
   <div class="card-hd"><div class="rank">2</div><div class="card-title">高盛CEO：高油价或在下半年改变消费者行为 <span class="tag hot">🔥 热度最高</span></div></div>
@@ -702,8 +683,56 @@ data-date="2026-06-02">
 </div>
 
 <script>
-var dailyDates = ["2026-06-04", "2026-06-03", "2026-06-02"];
-var dailyLabels = {"2026-06-04": "6月4日 · 周四", "2026-06-03": "6月3日 · 周三", "2026-06-02": "6月2日 · 周二"};
+var dailyDates = ["2026-06-04", "2026-06-03"];
+var dailyLabels = {"2026-06-04": "6月4日 · 周四", "2026-06-03": "6月3日 · 周三"};
+var dailyIndex = 0;
+
+function switchDailyDate(dir) {
+  var idx = dailyIndex + dir;
+  if (idx < 0 || idx >= dailyDates.length) return;
+  dailyIndex = idx;
+  showDate(dailyDates[dailyIndex]);
+}
+
+function goToDailyDate(date) {
+  var idx = dailyDates.indexOf(date);
+  if (idx >= 0) { dailyIndex = idx; showDate(date); }
+}
+
+function showDate(date) {
+  document.getElementById("dailyDateLabel").innerHTML = dailyLabels[date] || date;
+  document.getElementById("dailyDateSelect").value = date;
+  var all = document.querySelectorAll("[data-date]");
+  for (var i = 0; i < all.length; i++) {
+    all[i].style.display = all[i].getAttribute("data-date") === date ? "block" : "none";
+  }
+}
+
+(function() {
+  var sel = document.getElementById("dailyDateSelect");
+  for (var i = 0; i < dailyDates.length; i++) {
+    var opt = document.createElement("option");
+    opt.value = dailyDates[i];
+    opt.innerHTML = dailyLabels[dailyDates[i]] || dailyDates[i];
+    sel.appendChild(opt);
+  }
+  showDate(dailyDates[0]);
+})();
+
+function switchTab(btn, tabId) {
+  document.querySelectorAll(".tab-bar button").forEach(function(b) { b.classList.remove("active"); });
+  document.querySelectorAll(".tab-content").forEach(function(t) { t.classList.remove("active"); });
+  btn.classList.add("active");
+  document.getElementById(tabId).classList.add("active");
+}
+</script>
+</body>
+</html>
+
+
+<script>
+var dailyDates = ["2026-06-04", "2026-06-03"];
+var dailyLabels = {"2026-06-04": "6月4日 · 周四", "2026-06-03": "6月3日 · 周三"};
 var dailyIndex = 0;
 
 function switchDailyDate(dir) {
