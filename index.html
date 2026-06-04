@@ -30,6 +30,7 @@
   .tab-bar { display: flex; gap: 0; margin-bottom: 16px; background: #e8e8e8; border-radius: 10px; overflow: hidden; width: fit-content; }
   .tab-bar button { padding: 10px 24px; border: none; background: transparent; cursor: pointer; font-size: 14px; font-weight: 600; color: #666; }
   .tab-bar button.active { background: #fff; color: #1a1a2e; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .tab-bar button:hover:not(.active) { color: #333; }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
   .card { background: #fff; border-radius: 16px; padding: 20px 24px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 5px solid #ddd; }
@@ -53,13 +54,13 @@
   .card-body { font-size: 13.5px; line-height: 1.7; color: #444; }
   .card-body strong { color: #1a1a2e; }
   .card-body ul { margin: 6px 0 0 16px; list-style: none; }
-  .card-body ul li::before { content: "\2022 "; color: #999; }
+  .card-body ul li::before { content: "\\2022 "; color: #999; }
   .card-body ul li { margin-bottom: 3px; }
   .ref-links { margin-top: 8px; font-size: 12px; line-height: 1.8; }
   .ref-links a { color: #2563eb; text-decoration: underline; font-size: 12px; cursor: pointer; }
   .ref-links a:hover { color: #1d4ed8; }
   .note-box { margin-top: 8px; padding: 6px 10px; border: 1px dashed #ccc; border-radius: 6px; font-size: 12px; color: #999; background: #fafafa; min-height: 30px; cursor: text; line-height: 1.5; }
-  .note-box:empty:before { content: "\270f\ufe0f \u70b9\u51fb\u6dfb\u52a0\u5907\u6ce8..."; color: #bbb; }
+  .note-box:empty:before { content: "\\270f\\ufe0f \\u70b9\\u51fb\\u6dfb\\u52a0\\u5907\\u6ce8..."; color: #bbb; }
   .data-box { background: #fff; border-radius: 16px; padding: 20px 24px; margin-top: 16px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .data-box h3 { font-size: 17px; margin-bottom: 12px; }
   .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -88,51 +89,48 @@
 <div class="container">
 
 <div class="top-bar">
-  <div class="logo">🛢️ 能源资讯日报 <span>每天打开，一览全局</span></div>
+  <div class="logo">\U0001f6e2\ufe0f 能源资讯日报 <span>每天打开，一览全局</span></div>
 </div>
 
-<div class="update-info">🔄 更新时间：2026年6月3日 · 近7天趋势：05月28日 ~ 06月04日</div>
+<div class="update-info">\U0001f504 更新时间：2026年6月3日 · 近7天趋势：5月27日 ~ 6月3日</div>
 
 <div class="tips-bar">
-  <strong>📌 使用说明：</strong>
-  每条新闻下方 <strong>✏️ 备注框</strong> 可点击编辑保存 · 点击 <strong>蓝色链接</strong> 查看原文
+  <strong>\U0001f4cc 使用说明：</strong>
+  每条新闻下方 <strong>\u270f\ufe0f 备注框</strong> 可点击编辑保存 · 点击 <strong>蓝色链接</strong> 查看原文
 </div>
 
 <div class="dim-bar">
-  <strong>📊 新闻评定纬度：</strong>
-  <span class="dim-item"><strong>🎯 Tavily评分</strong> — 搜索引擎按相关性与时效性计算的客观分数（0~1.00）</span>
-  <span class="dim-item"><strong>🔥 国内热度</strong> — 国内媒体与社交平台讨论量</span>
-  <span class="dim-item"><strong>🌏 国际关注</strong> — 外媒覆盖程度</span>
-  <span class="dim-item"><strong>💡 独家性</strong> — 首次披露 vs 后续转载</span>
-  <span class="dim-item"><strong>📊 综合评级</strong> — 四项加权总评</span>
+  <strong>\U0001f4ca 新闻评定纬度：</strong>
+  <span class="dim-item"><strong>\U0001f3af Tavily评分</strong> — 搜索引擎按相关性与时效性计算的客观分数（0~1.00）</span>
+  <span class="dim-item"><strong>\U0001f525 国内热度</strong> — 国内媒体与社交平台讨论量</span>
+  <span class="dim-item"><strong>\U0001f30f 国际关注</strong> — 外媒覆盖程度</span>
+  <span class="dim-item"><strong>\U0001f4a1 独家性</strong> — 首次披露 vs 后续转载</span>
+  <span class="dim-item"><strong>\U0001f4ca 综合评级</strong> — 四项加权总评</span>
 </div>
 
 <div class="tab-bar">
-  <button class="active" onclick="switchTab(this, 'tabDaily')">📋 每日TOP5</button>
-  <button onclick="switchTab(this, 'tabWeekly')">📊 7天趋势TOP10</button>
+  <button class="active" onclick="switchTab(this, 'tabDaily')">\U0001f4cb 每日TOP5</button>
+  <button onclick="switchTab(this, 'tabWeekly')">\U0001f4ca 7天趋势TOP10</button>
 </div>
 
 <!-- ===== 每日TOP5 ===== -->
 <div class="tab-content active" id="tabDaily">
 
 <div class="date-nav-bar">
-  <button class="date-nav-btn" onclick="switchDailyDate(-1)">◀</button>
+  <button class="date-nav-btn" onclick="switchDailyDate(-1)">\u25c0</button>
   <span class="date-nav-label" id="dailyDateLabel">6月2日 · 周二</span>
-  <button class="date-nav-btn" onclick="switchDailyDate(1)">▶</button>
+  <button class="date-nav-btn" onclick="switchDailyDate(1)">\u25b6</button>
   <select class="date-nav-select" id="dailyDateSelect" onchange="goToDailyDate(this.value)"></select>
 </div>
 
 <div class="day-content" data-date="2026-06-02">
 
 <div class="card r1">
-  <div class="card-hd">
-    <div class="rank">1</div>
-    <div class="card-title">Vitol警告：石油市场低估风险，中国恢复进口将引爆油价 <span class="tag hot">🔥 热度最高</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">1</div><div class="card-title">Vitol警告：石油市场低估风险，中国恢复进口将引爆油价 <span class="tag hot">\U0001f525 热度最高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 World Oil</span>
-    <span class="dt">📅 6月2日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
+    <span class="src">\U0001f4f0 World Oil</span>
+    <span class="dt">\U0001f4c5 6月2日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
     <p>6月2日，全球最大独立石油交易商<strong>Vitol</strong>的巴林董事Tom Baker在伦敦S&P Global能源会议上发出重磅警告：石油市场正在<strong>低估伊朗战争的风险</strong>。他指出霍尔木兹海峡关闭及能源基础设施遭袭已导致约<strong>1400万桶/日</strong>的中东供应下线，是"史上最大石油供应危机"。他特别强调：<strong>"中国不会无限期每天停止进口500万桶原油，当他们需要那些原油时，价格必须走高。"</strong></p>
@@ -140,20 +138,17 @@
       <li><strong>为什么重要：</strong>Vitol是全球最大石油交易商，其判断直接影响市场预期</li>
       <li><strong>短视频建议：</strong>"全球最大石油贩子发话：中国不买油只是暂时的"</li>
     </ul>
-    <div class="ref-links">📎 <a href="https://worldoil.com/news/2026/6/2/vitol-executive-warns-west-is-asleep-at-the-wheel-on-oil-supply-crisis/" target="_blank">World Oil — Vitol警告</a></div>
+    <div class="ref-links">\U0001f4ce <a href="https://worldoil.com/news/2026/6/2/vitol-executive-warns-west-is-asleep-at-the-wheel-on-oil-supply-crisis/" target="_blank">World Oil — Vitol警告</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r2">
-  <div class="card-hd">
-    <div class="rank">2</div>
-    <div class="card-title">高盛CEO：高油价或在下半年改变消费者行为 <span class="tag hot">🔥 热度最高</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">2</div><div class="card-title">高盛CEO：高油价或在下半年改变消费者行为 <span class="tag hot">\U0001f525 热度最高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 CNBC</span>
-    <span class="dt">📅 6月2日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
+    <span class="src">\U0001f4f0 CNBC</span>
+    <span class="dt">\U0001f4c5 6月2日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
     <p>6月2日，高盛CEO <strong>David Solomon</strong>在纽约表示：如果油价推动通胀回升，<strong>消费者行为可能在2026年下半年发生改变</strong>。这是华尔街顶级投行掌舵人对高油价冲击实体经济发出的最直接警告。当前布伦特原油已突破<strong>$104/桶</strong>。</p>
@@ -161,20 +156,17 @@
       <li><strong>为什么重要：</strong>高盛CEO亲自发声分量极重；"消费者行为改变"是需求破坏的前兆信号</li>
       <li><strong>短视频建议：</strong>"高盛老板亲自喊话：油价再涨下去大家都要省着花了"</li>
     </ul>
-    <div class="ref-links">📎 <a href="https://www.cnbc.com/2026/06/02/goldman-ceo-david-solomon-greed-mode-ai-firms-ipos.html" target="_blank">CNBC — 高盛CEO发声</a></div>
+    <div class="ref-links">\U0001f4ce <a href="https://www.cnbc.com/2026/06/02/goldman-ceo-david-solomon-greed-mode-ai-firms-ipos.html" target="_blank">CNBC — 高盛CEO发声</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r3">
-  <div class="card-hd">
-    <div class="rank">3</div>
-    <div class="card-title">大量油轮仍困霍尔木兹海峡，航运格局面临永久性改变 <span class="tag warm">🔥 热度高</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">3</div><div class="card-title">大量油轮仍困霍尔木兹海峡，航运格局面临永久性改变 <span class="tag warm">\U0001f525 热度高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 MarineLink</span>
-    <span class="dt">📅 6月2日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
+    <span class="src">\U0001f4f0 MarineLink</span>
+    <span class="dt">\U0001f4c5 6月2日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
     <p>大量大型油轮仍被困在霍尔木兹海峡——即便成功脱困，船东也可能因安全风险不愿再次返回。此前数据显示仅有约1/4的被困油轮成功逃离。分析师认为，即使战争结束，通过霍尔木兹海峡的航运量<strong>可能永远回不到战前水平</strong>。</p>
@@ -182,20 +174,17 @@
       <li><strong>为什么重要：</strong>"永久性改变"意味着全球能源运输路线的结构性重塑</li>
       <li><strong>短视频建议：</strong>"霍尔木兹的油轮，逃出来了也不敢再回去"</li>
     </ul>
-    <div class="ref-links">📎 <a href="https://www.marinelink.com/news/third-vlcc-exits-strait-hormuz-539455" target="_blank">MarineLink — 油轮仍困</a></div>
+    <div class="ref-links">\U0001f4ce <a href="https://www.marinelink.com/news/third-vlcc-exits-strait-hormuz-539455" target="_blank">MarineLink — 油轮仍困</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r4">
-  <div class="card-hd">
-    <div class="rank">4</div>
-    <div class="card-title">布伦特原油突破104美元，中东多线冲突推动油价跳涨 <span class="tag warm">🔥 热度高</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">4</div><div class="card-title">布伦特原油突破104美元，中东多线冲突推动油价跳涨 <span class="tag warm">\U0001f525 热度高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 CNBC</span>
-    <span class="dt">📅 6月2日首发</span>
-    <span class="vid">✅ 适合短视频</span>
+    <span class="src">\U0001f4f0 CNBC</span>
+    <span class="dt">\U0001f4c5 6月2日首发</span>
+    <span class="vid">\u2705 适合短视频</span>
   </div>
   <div class="card-body">
     <p>6月2日布伦特原油飙升至<strong>104.4美元/桶（上涨4.21%）</strong>，WTI原油<strong>101.85美元/桶（上涨3.06%）</strong>。此前伊朗表态将"完全封锁"霍尔木兹海峡，并停止与美国谈判。以色列扩大黎巴嫩进攻进一步加剧了市场担忧。</p>
@@ -203,20 +192,17 @@
       <li><strong>为什么重要：</strong>油价再次突破100美元关口；中东从"单线冲突"演变为"多线冲突"</li>
       <li><strong>短视频建议：</strong>"油价又飙了：一觉醒来布伦特到了104"</li>
     </ul>
-    <div class="ref-links">📎 <a href="https://www.cnbc.com/2026/05/29/oil-prices-iran-ceasefire-us-trump-strait-hormuz-energy-costs.html" target="_blank">CNBC — 布伦特104.4美元</a></div>
+    <div class="ref-links">\U0001f4ce <a href="https://www.cnbc.com/2026/05/29/oil-prices-iran-ceasefire-us-trump-strait-hormuz-energy-costs.html" target="_blank">CNBC — 布伦特104.4美元</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r5">
-  <div class="card-hd">
-    <div class="rank">5</div>
-    <div class="card-title">远景能源携手IES在老挝打造东南亚最大未来能源系统</div>
-  </div>
+  <div class="card-hd"><div class="rank">5</div><div class="card-title">远景能源携手IES在老挝打造东南亚最大未来能源系统</div></div>
   <div class="card-meta">
-    <span class="src">📰 PR Newswire</span>
-    <span class="dt">📅 6月1日首发</span>
-    <span class="vid">✅ 比较适合</span>
+    <span class="src">\U0001f4f0 PR Newswire</span>
+    <span class="dt">\U0001f4c5 6月1日首发</span>
+    <span class="vid">\u2705 比较适合</span>
   </div>
   <div class="card-body">
     <p>中国远景能源与东南亚IES签署合作，共同推进老挝<strong>季风风电项目</strong>，打造<strong>东南亚最大AI驱动未来能源系统</strong>。这是中国企业出海参与区域能源转型的标志性项目。</p>
@@ -224,15 +210,14 @@
       <li><strong>为什么重要：</strong>中国新能源企业出海布局加速；全球能源危机下清洁能源投资反而加速</li>
       <li><strong>短视频建议：</strong>"中东在打仗，中国企业在老挝建了一个未来能源系统"</li>
     </ul>
-    <div class="ref-links">📎 <a href="https://en.prnasia.com/releases/apac/envision-energy-partners-with-impact-electrons-siam-to-develop-southeast-asia-s-largest-future-energy-system-in-laos-535334.shtml" target="_blank">PR Newswire — 远景能源</a></div>
+    <div class="ref-links">\U0001f4ce <a href="https://en.prnasia.com/releases/apac/envision-energy-partners-with-impact-electrons-siam-to-develop-southeast-asia-s-largest-future-energy-system-in-laos-535334.shtml" target="_blank">PR Newswire — 远景能源</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
-
 <!-- ===== 核心数据速览 ===== -->
 <div class="data-box">
-  <h3>📊 核心数据速览</h3>
+  <h3>\U0001f4ca 核心数据速览</h3>
   <table class="data-table">
     <thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead>
     <tbody>
@@ -244,16 +229,15 @@
   </table>
 </div>
 
-
 <!-- ===== 短视频选题建议 ===== -->
 <div class="data-box">
-  <h3>🎬 短视频选题建议</h3>
+  <h3>\U0001f3ac 短视频选题建议</h3>
   <div class="video-grid">
-    <div class="video-tag vt-red">Vitol警告：中国恢复进口引爆油价<span class="sub">⭐⭐⭐⭐⭐ 财经新闻</span></div>
-    <div class="video-tag vt-orange">高盛老板喊话：油价再涨大家要省钱了<span class="sub">⭐⭐⭐⭐⭐ 财经人物</span></div>
-    <div class="video-tag vt-orange">油轮逃出霍尔木兹也不敢再回去<span class="sub">⭐⭐⭐⭐ 国际航运</span></div>
-    <div class="video-tag vt-blue">油价又破104，100美元成常态？<span class="sub">⭐⭐⭐⭐ 财经科普</span></div>
-    <div class="video-tag vt-pink">中东打仗，中国企业在老挝建绿能系统<span class="sub">⭐⭐⭐ 绿能出海</span></div>
+    <div class="video-tag vt-red">Vitol警告：中国恢复进口引爆油价<span class="sub">\u2b50\u2b50\u2b50\u2b50\u2b50 财经新闻</span></div>
+    <div class="video-tag vt-orange">高盛老板喊话：油价再涨大家要省钱了<span class="sub">\u2b50\u2b50\u2b50\u2b50\u2b50 财经人物</span></div>
+    <div class="video-tag vt-orange">油轮逃出霍尔木兹也不敢再回去<span class="sub">\u2b50\u2b50\u2b50\u2b50 国际航运</span></div>
+    <div class="video-tag vt-blue">油价又破104，100美元成常态？<span class="sub">\u2b50\u2b50\u2b50\u2b50 财经科普</span></div>
+    <div class="video-tag vt-pink">中东打仗，中国企业在老挝建绿能系统<span class="sub">\u2b50\u2b50\u2b50 绿能出海</span></div>
   </div>
 </div>
 
@@ -264,205 +248,204 @@
 <!-- ===== 7天趋势TOP10 ===== -->
 <div class="tab-content" id="tabWeekly">
 <div class="day-header">
-  <h2>📊 7天趋势TOP10</h2>
-  <span class="badge">05月28日 ~ 06月04日</span>
+  <h2>\U0001f4ca 7天趋势TOP10</h2>
+  <span class="badge">5月27日 ~ 6月3日</span>
 </div>
 
-<h3 class="section-title">📊 7天趋势TOP10</h3>
+<h3 class="section-title">\U0001f4ca 7天趋势TOP10</h3>
 
 <div class="card r1">
-  <div class="card-hd">
-    <div class="rank">1</div>
-    <div class="card-title">由于能源流动面临缓慢复苏，分析师再次上调石油预测 - 路透中文网 <span class="tag hot">🎯 Tavily评分 0.99</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">1</div><div class="card-title">中国暂停大量原油进口，成为全球油价"隐形稳定器" <span class="tag hot">\U0001f525 热度最高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 reuters.com</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 路透社 / 财富杂志</span>
+    <span class="dt">\U0001f4c5 5月29日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
-    <p>“今年价格达到新纪录的可能性很小。尽管我们预测价格将持续上涨到 7 月，但与目前的高水平相比，这一涨幅将是微乎其微的。”</p>
-    <div class="ref-links">📎 <a href="https://www.reuters.com/business/energy/analysts-hike-oil-forecasts-again-energy-flows-face-slow-recovery-2026-05-29/" target="_blank">🔗 查看原文</a></div>
+    <p>中国5月海路原油进口暴跌至近10年最低水平。分析认为，中国通过消耗地下战略石油储备替代进口，无形中充当了全球油价的稳定器。但分析师警告，这一策略可能在数周内耗尽储备空间。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>中国进口策略正在重塑全球油价走势</li>
+      <li><strong>短视频建议：</strong>"中国不买油了？全球油价靠中国撑着"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://fortune.com/2026/05/31/oil-prices-mystery-supply-iran-war-inventories-china-stockpiles-refinery-imports/" target="_blank">财富杂志 — 中国进口骤降</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r2">
-  <div class="card-hd">
-    <div class="rank">2</div>
-    <div class="card-title">中国如何控制全球油价 - Axios <span class="tag hot">🎯 Tavily评分 0.99</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">2</div><div class="card-title">伊朗停止与美国谈判，宣称将"完全封锁"霍尔木兹海峡 <span class="tag hot">\U0001f525 热度最高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 axios.com</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 CNBC</span>
+    <span class="dt">\U0001f4c5 6月1日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
-    <p>自今年年初以来，这一数字增长了 30%。但分析师预测，在一场长期冲突中，油价将跌至每桶 200 美元。
-
-放大：战前，中国每年进口约 1100 万桶石油</p>
-    <div class="ref-links">📎 <a href="https://www.axios.com/2026/05/29/china-oil-iran-war" target="_blank">🔗 查看原文</a></div>
+    <p>6月1日伊朗国家通讯社报道，伊方谈判代表停止通过中间人与美国交换信息，以抗议以色列在黎巴嫩和加沙的军事行动。伊朗明确表态将<strong>"完全封锁霍尔木兹海峡"</strong>。消息一出原油期货立刻飙升，停火希望大幅破灭。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>海峡完全封锁将切断全球20%能源运输</li>
+      <li><strong>短视频建议：</strong>"刚刚谈得好好的，伊朗突然翻脸了"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://www.cnbc.com/2026/06/01/iran-us-negotiations-strait-of-hormuz.html" target="_blank">CNBC — 伊朗停止谈判</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r3">
-  <div class="card-hd">
-    <div class="rank">3</div>
-    <div class="card-title">360 能源脉搏：本周能源领域最重要的事情 - 石油和天然气 360 <span class="tag hot">🎯 Tavily评分 0.99</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">3</div><div class="card-title">中国战略石油储备释放——隐藏的"价格稳定器" <span class="tag hot">\U0001f525 热度最高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 oilandgas360.com</span>
-    <span class="dt">📅 5月29日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 财富杂志</span>
+    <span class="dt">\U0001f4c5 5月29日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
-    <p>跳至内容
-
-登录
-
-2026 年 5 月 29 日星期五
-
-# 360 能量脉冲：本周能量方面最重要的事情
-
-（来自 Oil &amp; Gas 360） – 2026 年 5 月 22 日 – 能源市场在外交和战略之间度过了一周</p>
-    <div class="ref-links">📎 <a href="https://www.oilandgas360.com/360-energy-pulse-what-mattered-this-week-in-energy-15/" target="_blank">🔗 查看原文</a></div>
+    <p>中国大幅减少进口但国内未出现严重油荒。分析认为中国正在大量释放地下战略石油储备。去年大量购油补储推高油价，如今释放储备则在无形中充当了全球油价的稳定器。SPR能撑多久是市场核心悬念。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>储备耗尽后中国将被迫大量采购，可能引爆油价</li>
+      <li><strong>短视频建议：</strong>"中国的地下石油金库，到底能撑多少天？"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://fortune.com/2026/05/31/oil-prices-mystery-supply-iran-war-inventories-china-stockpiles-refinery-imports/" target="_blank">财富杂志 — 中国SPR深度报道</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r4">
-  <div class="card-hd">
-    <div class="rank">4</div>
-    <div class="card-title">中国石油、中国石化、中国海油齐发股价异动公告 <span class="tag hot">🎯 Tavily评分 0.99</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">4</div><div class="card-title">分析师三度上调2026年油价预测——布伦特从63涨至90美元以上 <span class="tag warm">\U0001f525 热度高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 cls.cn</span>
-    <span class="dt">📅 6月4日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 CNBC</span>
+    <span class="dt">\U0001f4c5 5月29日首发</span>
+    <span class="vid">\u2705 适合短视频</span>
   </div>
   <div class="card-body">
-    <p>财联社3月3日讯，受中东地缘局势的影响，A股油气板块上演罕见大涨行情，近2个交易日，“三桶油”历史上首次集体收获两连板。今日晚间，中国石油、中国石化与中国海油相继发布</p>
-    <div class="ref-links">📎 <a href="https://www.cls.cn/detail/2301599" target="_blank">🔗 查看原文</a></div>
+    <p>路透社调查显示，分析师第三次上调2026年油价预测。布伦特原油从战前63.85美元上调约40%，假设霍尔木兹海峡持续关闭至7月底，油价可能进一步攀升。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>上调40%意味着中国年进口成本增加数千亿元</li>
+      <li><strong>短视频建议：</strong>"油价从63到90，只用了三个月"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://www.cnbc.com/2026/05/29/oil-prices-iran-ceasefire-us-trump-strait-hormuz-energy-costs.html" target="_blank">CNBC — 油价预测上调</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r5">
-  <div class="card-hd">
-    <div class="rank">5</div>
-    <div class="card-title">中国石油和化工行业“走出去”的成就、问题、风险与展望 <span class="tag hot">🎯 Tavily评分 0.98</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">5</div><div class="card-title">埃克森美孚警告：石油库存将降至"前所未有"的危险水平 <span class="tag warm">\U0001f525 热度高</span></div></div>
   <div class="card-meta">
-    <span class="src">📰 m.sohu.com</span>
-    <span class="dt">📅 6月2日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 休斯顿纪事报</span>
+    <span class="dt">\U0001f4c5 5月29日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
-    <p>自新中国成立以来，中国石油和化工行业的国际化探索历经从政府援助、工程承包到商业化投资并购的长期演进，尤其是1993年开启商业化海外布局之后，行业“走出去”实现跨越式</p>
-    <div class="ref-links">📎 <a href="https://m.sohu.com/a/1031140691_121119270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334" target="_blank">🔗 查看原文</a></div>
+    <p>埃克森美孚高级副总裁Neil Chapman发出重磅警告：全球石油库存正在快速消耗，可能在数周内降至"前所未有"的危险水平，届时油价将暴涨。Chapman在纽约会议上表示："我们正在接近闻所未闻的库存水平，一旦到了那个点，油价就会飙升。"</p>
+    <ul>
+      <li><strong>为什么重要：</strong>全球最大油企之一的警告分量极重</li>
+      <li><strong>短视频建议：</strong>"埃克森美孚警告：几周后油价将……"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://www.chron.com/news/houston-texas/article/exxonmobil-oil-prices-22282710.php" target="_blank">休斯顿纪事报 — 埃克森警告</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r6">
-  <div class="card-hd">
-    <div class="rank">6</div>
-    <div class="card-title">中国石油昆仑大模型迈入主动智能新阶段_市场动态 <span class="tag hot">🎯 Tavily评分 0.98</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">6</div><div class="card-title">中国苯乙烯出口创历史新高——印度成最大买家</div></div>
   <div class="card-meta">
-    <span class="src">📰 worldmr.net</span>
-    <span class="dt">📅 5月30日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 ICIS</span>
+    <span class="dt">\U0001f4c5 5月28日首发</span>
+    <span class="vid">\u2705 适合短视频</span>
   </div>
   <div class="card-body">
-    <p>矿业资讯、矿权转让、矿石行情、金属供求、矿业设备, 注册会员免费发布信息。</p>
-    <div class="ref-links">📎 <a href="https://www.worldmr.net/Domestic/DomesticList/Info/2026-05-29/322894.shtml" target="_blank">🔗 查看原文</a></div>
+    <p>中国4月苯乙烯出口飙至历史新高19.54万吨，印度吸收41%成为最大买家。霍尔木兹海峡关闭导致中东化工供应中断，全球供应链正在重构，中国化工产业全球替代效应显现。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>中国化工产业借机抢占全球市场份额</li>
+      <li><strong>短视频建议：</strong>"海峡一堵，中国化工出口爆了"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://www.icis.com/explore/resources/news/2026/05/28/11212115/apic-26-china-sm-exports-hit-record-high-in-april-with-india-as-biggest-buyer" target="_blank">ICIS — 苯乙烯出口新高</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r7">
-  <div class="card-hd">
-    <div class="rank">7</div>
-    <div class="card-title">中国AI大模型行业研究报告 <span class="tag hot">🎯 Tavily评分 0.98</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">7</div><div class="card-title">5月油价创疫情以来最大月跌幅——但仍在百元高位</div></div>
   <div class="card-meta">
-    <span class="src">📰 m.yjbzr.com</span>
-    <span class="dt">📅 6月1日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 CNBC</span>
+    <span class="dt">\U0001f4c5 5月29日首发</span>
+    <span class="vid">\u2705 适合短视频</span>
   </div>
   <div class="card-body">
-    <p>来源：研精毕智市场调研网 时间：2026-06-01. 北京研精毕智信息咨询有限公司每年能够产出近200份定制化报告以及上千份细分市场调研报告。公司构建了涵盖8000万以上的海外</p>
-    <div class="ref-links">📎 <a href="https://m.yjbzr.com/analyze/8505.html" target="_blank">🔗 查看原文</a></div>
+    <p>5月原油录得2020年以来最大月度跌幅约19%。市场在押注和平协议，但分析师警告如果协议落空，7月可能面临残酷反转。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>最大月跌幅但绝对价仍高，反差值得关注</li>
+      <li><strong>短视频建议：</strong>"油价大跌19%，为什么加油还是贵？"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://www.cnbc.com/video/2026/05/29/oil-sees-worst-month-since-covid-everything-you-need-to-know.html" target="_blank">CNBC — 5月油价跌幅</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r8">
-  <div class="card-hd">
-    <div class="rank">8</div>
-    <div class="card-title">全球油价死守百元之下！中国“战略静默”重塑能源版图？_商品_全球资讯 <span class="tag hot">🎯 Tavily评分 0.97</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">8</div><div class="card-title">高盛称"需求破坏"正在抵消供应冲击风险</div></div>
   <div class="card-meta">
-    <span class="src">📰 bihainews.com</span>
-    <span class="dt">📅 6月3日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 OilPrice.com</span>
+    <span class="dt">\U0001f4c5 6月1日首发</span>
+    <span class="vid">\u2705 比较适合</span>
   </div>
   <div class="card-body">
-    <p>中东地缘冲突持续发酵，地区石油博弈迈入百天关键节点，全球能源市场本应迎来剧烈的供给冲击。</p>
-    <div class="ref-links">📎 <a href="https://www.bihainews.com/bhn-info/ywsp/20260613675.html" target="_blank">🔗 查看原文</a></div>
+    <p>高盛分析指出，高油价本身正在抑制消费，部分抵消了供应中断带来的上行压力。这与瑞银的观点形成对比，两大投行对油价走势看法不一。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>两大投行观点打架，讨论价值高</li>
+      <li><strong>短视频建议：</strong>"两大投行观点打架，你信谁？"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://oilprice.com/Latest-Energy-News/World-News/Goldman-Sachs-Sees-Oil-Demand-Destruction-Offsetting-Supply-Shock-Risks.html" target="_blank">OilPrice — 高盛需求破坏</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r9">
-  <div class="card-hd">
-    <div class="rank">9</div>
-    <div class="card-title">【中国能源周】碳的重新定义：从履约工具到价值资产——2026第四届中国能源周“碳的未来”论坛在京举行 <span class="tag hot">🎯 Tavily评分 0.96</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">9</div><div class="card-title">石油超级巨头警告：油价可能几周内冲上160美元</div></div>
   <div class="card-meta">
-    <span class="src">📰 finance.sina.com.cn</span>
-    <span class="dt">📅 5月30日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 OilPrice.com</span>
+    <span class="dt">\U0001f4c5 5月29日首发</span>
+    <span class="vid">\u2705 非常适合短视频</span>
   </div>
   <div class="card-body">
-    <p>2026年5月22日，北京——随着中国碳市场扩围至八大行业、欧盟CBAM全面实施以及《巴黎协定》第六条市场机制正式落地，全球碳定价体系正经历一场深刻变革。</p>
-    <div class="ref-links">📎 <a href="https://finance.sina.com.cn/wm/2026-05-29/doc-inhzqtzi7524858.shtml" target="_blank">🔗 查看原文</a></div>
+    <p>某国际石油超级巨头警告：若霍尔木兹海峡不能短期重开，油价可能在数周内飙升至160美元/桶。这一极端情景将对中国经济造成巨大冲击。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>160美元极端情景将大幅推高中国进口成本</li>
+      <li><strong>短视频建议：</strong>"油价会到160吗？"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://oilprice.com/Energy/Oil-Prices/Supermajor-Warns-Oil-Prices-Could-Hit-160-Within-Weeks.html" target="_blank">OilPrice — 油价可能冲160美元</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
 </div>
 
 <div class="card r10">
-  <div class="card-hd">
-    <div class="rank">10</div>
-    <div class="card-title">中国原油进口下滑，但这是经济原因而非利他主义 - 路透中文网 <span class="tag hot">🎯 Tavily评分 0.96</span></div>
-  </div>
+  <div class="card-hd"><div class="rank">10</div><div class="card-title">多艘船只在霍尔木兹海峡遇袭——雪佛龙CEO确认</div></div>
   <div class="card-meta">
-    <span class="src">📰 reuters.com</span>
-    <span class="dt">📅 6月1日首发</span>
-    <span class="vid">✅ 自动更新</span>
+    <span class="src">\U0001f4f0 OilPrice.com</span>
+    <span class="dt">\U0001f4c5 5月29日首发</span>
+    <span class="vid">\u2705 适合短视频</span>
   </div>
   <div class="card-body">
-    <p>显然，中东冲突是中国石油进口锐减的主要原因，但真正的挑战在于弄清楚中国这样做的原因和方式。</p>
-    <div class="ref-links">📎 <a href="https://www.reuters.com/markets/commodities/chinas-crude-oil-imports-slump-its-economics-not-altruism-2026-06-01/" target="_blank">🔗 查看原文</a></div>
+    <p>雪佛龙CEO确认多艘船只在霍尔木兹海峡遇袭。以色列扩大对黎巴嫩进攻，中东多线冲突持续升温，航运安全形势严峻。</p>
+    <ul>
+      <li><strong>为什么重要：</strong>船只遇袭直接威胁航运安全和保险费用</li>
+      <li><strong>短视频建议：</strong>"中国商船还安全吗？"</li>
+    </ul>
+    <div class="ref-links">\U0001f4ce <a href="https://oilprice.com/Latest-Energy-News/World-News/Chevron-CEO-Multiple-Ships-Attacked-In-Strait-of-Hormuz.html" target="_blank">OilPrice — 霍尔木兹船只遇袭</a></div>
     <div class="note-box" contenteditable="true"></div>
   </div>
-</div></div>
-
+</div>
 
 <!-- ===== 短视频选题建议排行 ===== -->
 <div class="data-box">
-  <h3>🎬 短视频选题建议排行</h3>
+  <h3>\U0001f3ac 短视频选题建议排行</h3>
   <div class="video-grid">
-    <div class="video-tag vt-red">中国为什么不买油了？<span class="sub">⭐⭐⭐⭐⭐ 财经科普</span></div>
-    <div class="video-tag vt-orange">伊朗停止谈判封锁海峡<span class="sub">⭐⭐⭐⭐⭐ 新闻资讯</span></div>
-    <div class="video-tag vt-orange">埃克森美孚警告前所未有危机<span class="sub">⭐⭐⭐⭐⭐ 财经新闻</span></div>
-    <div class="video-tag vt-blue">中国地下石油金库能撑多久？<span class="sub">⭐⭐⭐⭐ 科普揭秘</span></div>
-    <div class="video-tag vt-blue">5月跌19%为何加油还贵？<span class="sub">⭐⭐⭐⭐ 生活消费</span></div>
-    <div class="video-tag vt-blue">海峡一堵化工出口爆了<span class="sub">⭐⭐⭐⭐ 财经产业</span></div>
-    <div class="video-tag vt-blue">油价会冲到160吗？<span class="sub">⭐⭐⭐⭐ 泛知识</span></div>
-    <div class="video-tag vt-pink">两大投行观点打架你信谁？<span class="sub">⭐⭐⭐ 财经分析</span></div>
+    <div class="video-tag vt-red">中国为什么不买油了？<span class="sub">\u2b50\u2b50\u2b50\u2b50\u2b50 财经科普</span></div>
+    <div class="video-tag vt-orange">伊朗停止谈判封锁海峡<span class="sub">\u2b50\u2b50\u2b50\u2b50\u2b50 新闻资讯</span></div>
+    <div class="video-tag vt-orange">埃克森美孚警告前所未有危机<span class="sub">\u2b50\u2b50\u2b50\u2b50\u2b50 财经新闻</span></div>
+    <div class="video-tag vt-blue">中国地下石油金库能撑多久？<span class="sub">\u2b50\u2b50\u2b50\u2b50 科普揭秘</span></div>
+    <div class="video-tag vt-blue">5月跌19%为何加油还贵？<span class="sub">\u2b50\u2b50\u2b50\u2b50 生活消费</span></div>
+    <div class="video-tag vt-blue">海峡一堵化工出口爆了<span class="sub">\u2b50\u2b50\u2b50\u2b50 财经产业</span></div>
+    <div class="video-tag vt-blue">油价会冲到160吗？<span class="sub">\u2b50\u2b50\u2b50\u2b50 泛知识</span></div>
+    <div class="video-tag vt-pink">两大投行观点打架你信谁？<span class="sub">\u2b50\u2b50\u2b50 财经分析</span></div>
   </div>
 </div>
 
