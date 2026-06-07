@@ -13,27 +13,20 @@
   .logo span { font-size: 14px; -webkit-text-fill-color: #999; font-weight: 400; }
   .update-info { text-align: right; font-size: 12px; color: #999; margin-bottom: 20px; }
   .tips-bar { background: #fff8e1; border-radius: 12px; padding: 12px 18px; margin-bottom: 20px; border: 1px solid #ffe082; font-size: 13px; line-height: 1.7; color: #6d5200; }
-  .tips-bar strong { font-weight: 700; }
   .dim-bar { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 14px; font-size: 11px; line-height: 1.5; display: flex; flex-wrap: wrap; align-items: center; gap: 3px 10px; }
-  .dim-bar strong { font-weight: 600; }
-  .dim-bar .dim-item { display: inline-block; padding: 1px 6px; border-radius: 4px; background: rgba(255,255,255,0.08); white-space: nowrap; }
-  .dim-bar .dim-item strong { color: #f0c27f; }
-  .section-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
   .tab-bar { display: flex; gap: 0; margin-bottom: 16px; background: #e8e8e8; border-radius: 10px; overflow: hidden; width: fit-content; }
   .tab-bar button { padding: 10px 24px; border: none; background: transparent; cursor: pointer; font-size: 14px; font-weight: 600; color: #666; }
   .tab-bar button.active { background: #fff; color: #1a1a2e; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
   .tab-bar button:hover:not(.active) { color: #333; }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
+  .section-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; margin-top: 20px; }
   .card { background: #fff; border-radius: 16px; padding: 20px 24px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 5px solid #ddd; }
   .card.r1 { border-left-color: #e74c3c; } .card.r2 { border-left-color: #e67e22; } .card.r3 { border-left-color: #f1c40f; }
   .card.r4 { border-left-color: #3498db; } .card.r5 { border-left-color: #2ecc71; } .card.r6 { border-left-color: #9b59b6; }
   .card.r7 { border-left-color: #1abc9c; } .card.r8 { border-left-color: #e84393; } .card.r9 { border-left-color: #fd79a8; } .card.r10 { border-left-color: #636e72; }
   .card-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .rank { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff; flex-shrink: 0; }
-  .r1 .rank { background: #e74c3c; } .r2 .rank { background: #e67e22; } .r3 .rank { background: #f1c40f; color: #333; }
-  .r4 .rank { background: #3498db; } .r5 .rank { background: #2ecc71; } .r6 .rank { background: #9b59b6; }
-  .r7 .rank { background: #1abc9c; } .r8 .rank { background: #e84393; } .r9 .rank { background: #fd79a8; } .r10 .rank { background: #636e72; }
   .card-title { font-size: 16px; font-weight: 700; line-height: 1.4; }
   .card-title .tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 8px; margin-left: 6px; vertical-align: middle; font-weight: 600; }
   .tag.hot { background: #ffe0e0; color: #e74c3c; }
@@ -51,7 +44,7 @@
   .ref-links { margin-top: 8px; font-size: 12px; line-height: 1.8; }
   .ref-links a { color: #2563eb; text-decoration: underline; font-size: 12px; cursor: pointer; }
   .ref-links a:hover { color: #1d4ed8; }
-  .note-box { margin-top: 8px; padding: 6px 10px; border: 1px dashed #ccc; border-radius: 6px; font-size: 12px; color: #999; background: #fafafa; min-height: 30px; cursor: text; line-height: 1.5; }
+  .note-box { margin-top: 8px; padding: 6px 10px; border: 1px dashed #ccc; border-radius: 6px; font-size: 12px; color: #999; background: #fafafa; min-height: 30px; }
   .note-box:empty:before { content: "\270f\ufe0f \u70b9\u51fb\u6dfb\u52a0\u5907\u6ce8..."; color: #bbb; }
   .data-box { background: #fff; border-radius: 16px; padding: 20px 24px; margin-top: 16px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .data-box h3 { font-size: 17px; margin-bottom: 12px; }
@@ -66,11 +59,7 @@
   .vt-orange { background: linear-gradient(135deg, #e67e22, #d35400); }
   .vt-blue { background: linear-gradient(135deg, #3498db, #2980b9); }
   .vt-pink { background: linear-gradient(135deg, #e84393, #d63384); }
-  .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding: 16px 20px; background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 12px; color: #fff; }
-  .day-header h2 { font-size: 22px; font-weight: 700; margin: 0; }
-  .day-header .badge { display: inline-block; padding: 4px 14px; border-radius: 16px; background: rgba(255,255,255,0.15); font-size: 13px; font-weight: 600; margin-left: auto; }
   .footer { text-align: center; color: #999; font-size: 12px; margin-top: 30px; padding: 20px 0 10px; border-top: 1px solid #e0e0e0; }
-  @media (max-width: 600px) { body { padding: 16px 10px; } .logo { font-size: 20px; } .card { padding: 14px 16px; } .card-title { font-size: 14px; } .video-grid { grid-template-columns: 1fr 1fr; } .dim-bar { font-size: 10px; padding: 6px 8px; gap: 2px 6px; } .dim-bar .dim-item { padding: 1px 4px; font-size: 9px; } }
 </style>
 </head>
 <body>
@@ -80,34 +69,15 @@
   <div class="logo">🛢️ 能源资讯日报 <span>每天打开，一览全局</span></div>
 </div>
 
-<div class="update-info">🔄 更新时间：2026年6月6日 · 近7天趋势：5月31日 ~ 6月6日</div>
-
-<div class="tips-bar">
-  <strong>📌 使用说明：</strong>
-  每条新闻下方 <strong>✏️ 备注框</strong> 可点击编辑保存 · 点击 <strong>蓝色链接</strong> 查看原文
-</div>
-
-<div class="dim-bar">
-  <strong>📊 新闻评定纬度：</strong>
-  <span class="dim-item"><strong>🎯 Tavily评分</strong> — 搜索引擎按相关性与时效性计算的客观分数（0~1.00）</span>
-  <span class="dim-item"><strong>🔥 国内热度</strong> — 国内媒体与社交平台讨论量</span>
-  <span class="dim-item"><strong>🌏 国际关注</strong> — 外媒覆盖程度</span>
-  <span class="dim-item"><strong>💡 独家性</strong> — 首次披露 vs 后续转载</span>
-  <span class="dim-item"><strong>📊 综合评级</strong> — 四项加权总评</span>
-</div>
+<div class="update-info">🔄 更新时间：2026年6月6日</div>
 
 <div class="tab-bar">
   <button class="active" onclick="switchTab(this, 'tabDaily')">📋 每日TOP5</button>
   <button onclick="switchTab(this, 'tabWeekly')">📊 7天趋势TOP10</button>
 </div>
 
-<!-- ===== 每日TOP5 ===== -->
 <div class="tab-content active" id="tabDaily">
 
-<div class="day-header">
-  <h2>📅 6月6日 · 周六</h2>
-  <span class="badge">🔥 今日热点</span>
-</div>
 
 <div class="card r1">
   <div class="card-hd"><div class="rank">1</div><div class="card-title">中东突发！伊朗导弹袭击美军基地，中东局势再度升级 <span class="tag hot">🔥 热度最高</span></div></div>
@@ -206,7 +176,7 @@
     <tbody>
       <tr><td>伊朗导弹袭击</td><td class="num">直接攻击美军基地，冲突升级</td><td>新浪财经</td></tr>
       <tr><td>特朗普表态</td><td class="num">称将"迅速结束"伊朗战事</td><td>新浪财经</td></tr>
-      <tr><td>油价走势</td><td class="num">周末下跌，市场评估和谈与需求减弱</td><td>新浪财经</td></tr>
+      <tr><td>油价走势</td><td class="num">周末下跌，评估和谈与需求减弱</td><td>新浪财经</td></tr>
       <tr><td>美国石油储备</td><td class="num">洽谈在加州设立石油储备</td><td>新浪财经</td></tr>
     </tbody>
   </table>
@@ -221,13 +191,12 @@
     <div class="video-tag vt-blue">美国要在加州存油了<span class="sub">⭐⭐⭐⭐ 能源安全</span></div>
     <div class="video-tag vt-pink">美国政府内部油价分歧加剧<span class="sub">⭐⭐⭐ 时效热点</span></div>
   </div>
-
 </div>
+
 
 </div>
 
 <div class="tab-content" id="tabWeekly">
-<h3 class="section-title">📊 7天趋势TOP10</h3>
 
 <div class="card r1">
   <div class="card-hd"><div class="rank">1</div><div class="card-title">中国暂停大量原油进口，成为全球油价"隐形稳定器" <span class="tag hot">🔥 热度最高</span></div></div>
@@ -427,6 +396,12 @@
     <div class="video-tag vt-pink">美国能源内稳外贵之谜<span class="sub">⭐⭐⭐ 能源科普</span></div>
   </div>
 </div>
+
+</div>
+
+
+</div>
+
 
 </div>
 
