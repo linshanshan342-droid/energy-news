@@ -448,42 +448,6 @@
 </div>
 
 <script>
-var dailyDates = ["2026-06-06"];
-var dailyLabels = {"2026-06-06": "6月6日 · 周六"};
-var dailyIndex = 0;
-
-function switchDailyDate(dir) {
-  var idx = dailyIndex + dir;
-  if (idx < 0 || idx >= dailyDates.length) return;
-  dailyIndex = idx;
-  showDate(dailyDates[dailyIndex]);
-}
-
-function goToDailyDate(date) {
-  var idx = dailyDates.indexOf(date);
-  if (idx >= 0) { dailyIndex = idx; showDate(date); }
-}
-
-function showDate(date) {
-  document.getElementById("dailyDateLabel").innerHTML = dailyLabels[date] || date;
-  document.getElementById("dailyDateSelect").value = date;
-  var all = document.querySelectorAll("[data-date]");
-  for (var i = 0; i < all.length; i++) {
-    all[i].style.display = all[i].getAttribute("data-date") === date ? "block" : "none";
-  }
-}
-
-(function() {
-  var sel = document.getElementById("dailyDateSelect");
-  for (var i = 0; i < dailyDates.length; i++) {
-    var opt = document.createElement("option");
-    opt.value = dailyDates[i];
-    opt.innerHTML = dailyLabels[dailyDates[i]] || dailyDates[i];
-    sel.appendChild(opt);
-  }
-  showDate(dailyDates[0]);
-})();
-
 function switchTab(btn, tabId) {
   document.querySelectorAll(".tab-bar button").forEach(function(b) { b.classList.remove("active"); });
   document.querySelectorAll(".tab-content").forEach(function(t) { t.classList.remove("active"); });
