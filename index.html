@@ -1,539 +1,149 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>能源资讯日报</title>
+<head><meta charset="UTF-8"><title>能源资讯日报 · 6月11日</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI Emoji", "Apple Color Emoji", sans-serif; background: #f0f2f5; padding: 30px 20px 60px; color: #1a1a2e; }
-  .container { max-width: 1200px; margin: 0 auto; }
-  .top-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
-  .logo { font-size: 26px; font-weight: 800; background: linear-gradient(135deg, #e74c3c, #f39c12); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .logo span { font-size: 14px; -webkit-text-fill-color: #999; font-weight: 400; }
-  .update-info { text-align: right; font-size: 12px; color: #999; margin-bottom: 20px; }
-  .tips-bar { background: #fff8e1; border-radius: 12px; padding: 12px 18px; margin-bottom: 20px; border: 1px solid #ffe082; font-size: 13px; line-height: 1.7; color: #6d5200; }
-  .dim-bar { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 14px; font-size: 11px; line-height: 1.5; display: flex; flex-wrap: wrap; align-items: center; gap: 3px 10px; }
-  .tab-bar { display: flex; gap: 0; margin-bottom: 16px; background: #e8e8e8; border-radius: 10px; overflow: hidden; width: fit-content; }
-  .tab-bar button { padding: 10px 24px; border: none; background: transparent; cursor: pointer; font-size: 14px; font-weight: 600; color: #666; }
-  .tab-bar button.active { background: #fff; color: #1a1a2e; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-  .tab-bar button:hover:not(.active) { color: #333; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-  .section-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; margin-top: 20px; }
-  .card { background: #fff; border-radius: 16px; padding: 20px 24px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 5px solid #ddd; }
-  .card.r1 { border-left-color: #e74c3c; } .card.r2 { border-left-color: #e67e22; } .card.r3 { border-left-color: #f1c40f; }
-  .card.r4 { border-left-color: #3498db; } .card.r5 { border-left-color: #2ecc71; } .card.r6 { border-left-color: #9b59b6; }
-  .card.r7 { border-left-color: #1abc9c; } .card.r8 { border-left-color: #e84393; } .card.r9 { border-left-color: #fd79a8; } .card.r10 { border-left-color: #636e72; }
-  .card-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .rank { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff; flex-shrink: 0; }
-  .r1 .rank { background: #e74c3c; } .r2 .rank { background: #e67e22; } .r3 .rank { background: #f1c40f; color: #333; }
-  .r4 .rank { background: #3498db; } .r5 .rank { background: #2ecc71; } .r6 .rank { background: #9b59b6; }
-  .r7 .rank { background: #1abc9c; } .r8 .rank { background: #e84393; } .r9 .rank { background: #fd79a8; } .r10 .rank { background: #636e72; }
-  .card-title { font-size: 16px; font-weight: 700; line-height: 1.4; }
-  .card-title .tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 8px; margin-left: 6px; vertical-align: middle; font-weight: 600; }
-  .tag.hot { background: #ffe0e0; color: #e74c3c; }
-  .tag.warm { background: #fff3e0; color: #e67e22; }
-  .card-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-  .card-meta span { font-size: 11px; padding: 2px 8px; border-radius: 10px; }
-  .card-meta .src { background: #e3f2fd; color: #1565c0; }
-  .card-meta .src-tag { font-size: 9px; padding: 1px 5px; border-radius: 6px; background: #e8e8e8; color: #666; font-weight: 400; margin-left: 2px; }
-  .card-meta .dt { background: #ffebee; color: #c62828; font-weight: 700; }
-  .card-meta .vid { background: #e8f5e9; color: #2e7d32; font-weight: 600; }
-  .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding: 16px 20px; background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 12px; color: #fff; }
-  .day-header h2 { font-size: 22px; font-weight: 700; margin: 0; }
-  .day-header .badge { display: inline-block; padding: 4px 14px; border-radius: 16px; background: rgba(255,255,255,0.15); font-size: 13px; font-weight: 600; }
-  .card-body { font-size: 13.5px; line-height: 1.7; color: #444; }
-  .card-body strong { color: #1a1a2e; }
-  .card-body ul { margin: 6px 0 0 16px; list-style: none; }
-  .card-body ul li::before { content: "\2022 "; color: #999; }
-  .card-body ul li { margin-bottom: 3px; }
-  .ref-links { margin-top: 8px; font-size: 12px; line-height: 1.8; }
-  .ref-links a { color: #2563eb; text-decoration: underline; font-size: 12px; cursor: pointer; }
-  .ref-links a:hover { color: #1d4ed8; }
-  .note-box { margin-top: 8px; padding: 6px 10px; border: 1px dashed #ccc; border-radius: 6px; font-size: 12px; color: #999; background: #fafafa; min-height: 30px; }
-  .note-box:empty:before { content: "\270f\ufe0f \u70b9\u51fb\u6dfb\u52a0\u5907\u6ce8..."; color: #bbb; }
-  .data-box { background: #fff; border-radius: 16px; padding: 20px 24px; margin-top: 16px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-  .data-box h3 { font-size: 17px; margin-bottom: 12px; }
-  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .data-table th { background: #1a1a2e; color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; }
-  .data-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
-  .data-table .num { font-weight: 700; color: #e74c3c; }
-  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
-  .video-tag { padding: 12px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; text-align: center; color: #fff; }
-  .video-tag .sub { display: block; font-size: 11px; margin-top: 4px; opacity: 0.9; font-weight: 400; }
-  .vt-red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
-  .vt-orange { background: linear-gradient(135deg, #e67e22, #d35400); }
-  .vt-blue { background: linear-gradient(135deg, #3498db, #2980b9); }
-  .vt-pink { background: linear-gradient(135deg, #e84393, #d63384); }
-  .footer { text-align: center; color: #999; font-size: 12px; margin-top: 30px; padding: 20px 0 10px; border-top: 1px solid #e0e0e0; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","Segoe UI Emoji","Apple Color Emoji",sans-serif;background:#f0f2f5;padding:30px 20px 60px;color:#1a1a2e}
+.container{max-width:1200px;margin:0 auto}
+.top-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.logo{font-size:26px;font-weight:800;background:linear-gradient(135deg,#e74c3c,#f39c12);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo span{font-size:14px;-webkit-text-fill-color:#999;font-weight:400}
+.update-info{text-align:right;font-size:12px;color:#999;margin-bottom:20px}
+.tab-bar{display:flex;margin-bottom:16px;background:#e8e8e8;border-radius:10px;overflow:hidden;width:fit-content}
+.tab-bar button{padding:10px 24px;border:none;background:transparent;cursor:pointer;font-size:14px;font-weight:600;color:#666}
+.tab-bar button.active{background:#fff;color:#1a1a2e;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+.tab-content{display:none}.tab-content.active{display:block}
+.day-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:16px 20px;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;color:#fff}
+.day-header h2{font-size:22px;font-weight:700;margin:0}
+.day-header .badge{display:inline-block;padding:4px 14px;border-radius:16px;background:rgba(255,255,255,0.15);font-size:13px;font-weight:600}
+.card{background:#fff;border-radius:16px;padding:20px 24px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,0.05);border-left:5px solid #ddd}
+.card.r1{border-left-color:#e74c3c}.card.r2{border-left-color:#e67e22}.card.r3{border-left-color:#f1c40f}
+.card.r4{border-left-color:#3498db}.card.r5{border-left-color:#2ecc71}.card.r6{border-left-color:#9b59b6}
+.card.r7{border-left-color:#1abc9c}.card.r8{border-left-color:#e84393}.card.r9{border-left-color:#fd79a8}.card.r10{border-left-color:#636e72}
+.card-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rank{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;flex-shrink:0}
+.r1 .rank{background:#e74c3c}.r2 .rank{background:#e67e22}.r3 .rank{background:#f1c40f;color:#333}
+.r4 .rank{background:#3498db}.r5 .rank{background:#2ecc71}.r6 .rank{background:#9b59b6}
+.r7 .rank{background:#1abc9c}.r8 .rank{background:#e84393}.r9 .rank{background:#fd79a8}.r10 .rank{background:#636e72}
+.card-title{font-size:16px;font-weight:700;line-height:1.4}
+.card-title .tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:8px;margin-left:6px;vertical-align:middle;font-weight:600}
+.tag.hot{background:#ffe0e0;color:#e74c3c}.tag.warm{background:#fff3e0;color:#e67e22}
+.card-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.card-meta span{font-size:11px;padding:2px 8px;border-radius:10px}
+.card-meta .src{background:#e3f2fd;color:#1565c0}
+.card-meta .src-tag{font-size:9px;padding:1px 5px;border-radius:6px;background:#e8e8e8;color:#666}
+.card-meta .dt{background:#ffebee;color:#c62828;font-weight:700}
+.card-meta .vid{background:#e8f5e9;color:#2e7d32;font-weight:600}
+.card-body{font-size:13px;line-height:1.7;color:#444}
+.card-body ul{margin:4px 0 0 16px;list-style:none}
+.card-body ul li::before{content:"\2022 ";color:#999}
+.ref-links{margin-top:6px;font-size:12px;line-height:1.8}
+.ref-links a{color:#2563eb;text-decoration:underline;font-size:12px;cursor:pointer}
+.ref-links a:hover{color:#1d4ed8}
+.note-box{margin-top:6px;padding:4px 8px;border:1px dashed #ccc;border-radius:6px;font-size:11px;color:#999;background:#fafafa;min-height:24px}
+.note-box:empty:before{content:"\270f\fe0f \u70b9\u51fb\u6dfb\u52a0\u5907\u6ce8...";color:#bbb}
+.data-box{background:#fff;border-radius:16px;padding:20px 24px;margin-top:16px;margin-bottom:24px;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+.data-box h3{font-size:17px;margin-bottom:12px}
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th{background:#1a1a2e;color:#fff;padding:8px 12px;text-align:left;font-weight:600}
+.data-table td{padding:8px 12px;border-bottom:1px solid #eee}
+.data-table .num{font-weight:700;color:#e74c3c}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.video-tag{padding:10px 12px;border-radius:10px;font-size:12px;font-weight:600;text-align:center;color:#fff}
+.video-tag .sub{display:block;font-size:10px;margin-top:3px;opacity:0.9;font-weight:400}
+.vt-red{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+.vt-orange{background:linear-gradient(135deg,#e67e22,#d35400)}
+.vt-blue{background:linear-gradient(135deg,#3498db,#2980b9)}
+.vt-pink{background:linear-gradient(135deg,#e84393,#d63384)}
+.footer{text-align:center;color:#999;font-size:12px;margin-top:30px;padding:20px 0 10px;border-top:1px solid #e0e0e0}
+.source-legend{font-size:11px;color:#999;padding:10px 0;text-align:center;border-top:1px solid #eee;margin-top:10px}
+.source-legend span{display:inline-block;padding:2px 6px;border-radius:4px;background:#e8e8e8;color:#666;font-size:9px;margin:0 4px}
 </style>
 </head>
 <body>
 <div class="container">
-
-<div class="top-bar">
-  <div class="logo">🛢️ 能源资讯日报 <span>每天打开，一览全局</span></div>
-</div>
-
-<div class="update-info">🔄 更新时间：2026年6月10日</div>
-
+<div class="top-bar"><div class="logo">&#x1f6e2;&#xfe0f; 能源资讯日报 <span>每天打开，一览全局</span></div></div>
+<div class="update-info">&#x1f504; 更新时间：2026年6月11日</div>
 <div class="tab-bar">
-  <button class="active" onclick="switchTab(this, 'tabDaily')">📋 每日TOP5</button>
-  <button onclick="switchTab(this, 'tabWeekly')">📊 7天趋势TOP10</button>
+<button class="active" onclick="switchTab(this,'tabDaily')">&#x1f4cb; 每日TOP10</button>
+<button onclick="switchTab(this,'tabWeekly')">&#x1f4ca; 7天趋势TOP10</button>
 </div>
 
+<!-- 日榜 -->
 <div class="tab-content active" id="tabDaily">
-<div class="day-header">
-  <h2>📅 6月10日 · 周三</h2>
-  <span class="badge">🔥 今日热点</span>
-</div>
+<div class="day-header"><h2>&#x1f4c5; 6月11日 &#xb7; 周四</h2><span class="badge">&#x1f525; 今日热点</span></div>
+<div class="card r1"><div class="card-hd"><div class="rank">1</div><div class="card-title">&#x1f1e8;&#x1f1f3; OPEC数据显示伊朗石油产量暴跌19%，中国进口缺口加大</div></div><div class="card-meta"><span class="src">财联社 <span class="src-tag">权威财经</span></span><span class="dt">6月11日首发</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>财联社6月11日援引OPEC月报数据，伊朗上个月石油产量下降19%，创战争以来最大单月降幅。</p><ul><li><strong>为什么重要：</strong>伊朗减产冲击中国原油供应安全</li><li><strong>短视频建议：</strong>"伊朗石油产量暴跌19%！中国找油更难了"</li></ul><div class="ref-links"><a href="https://www.cls.cn/detail/2397517" target="_blank">财联社 — OPEC数据显示伊朗石油产量下降19%</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r2"><div class="card-hd"><div class="rank">2</div><div class="card-title">美伊互炸！伊朗关闭霍尔木兹，油价暴涨后特朗普突转口风 <span class="tag hot">&#x1f525; 热度最高</span></div></div><div class="card-meta"><span class="src">WorldOil <span class="src-tag">行业分析</span></span><span class="dt">6月11日首发</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>美军第二波打击，伊朗导弹袭美军基地并威胁关闭霍尔木兹。特朗普突转口风取消打击。</p><ul><li><strong>为什么重要：</strong>美伊冲突升级可能彻底关闭霍尔木兹</li><li><strong>短视频建议：</strong>"美军炸伊朗，伊朗打美军——油价像过山车"</li></ul><div class="ref-links"><a href="https://www.worldoil.com/news/2026/6/11/trump-reverses-course-on-iran-strikes-easing-concerns-over-kharg-island/" target="_blank">WorldOil — Trump reverses course on Iran strikes</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r3"><div class="card-hd"><div class="rank">3</div><div class="card-title">&#x1f1e8;&#x1f1f3; 新华网：欧佩克继续下调全球石油需求，中国需求走弱是主因</div></div><div class="card-meta"><span class="src">新华网 <span class="src-tag">权威解读</span></span><span class="dt">6月11日首发</span><span class="vid">适合短视频</span></div><div class="card-body"><p>新华网报道，欧佩克最新月报下调本年度全球石油需求增长预期，主因是中国需求持续疲软。</p><ul><li><strong>为什么重要：</strong>中国需求走弱正成为抑制全球油价的关键变量</li><li><strong>短视频建议：</strong>"欧佩克又说全球油卖不动了！因为中国不买了"</li></ul><div class="ref-links"><a href="https://www.news.cn/20260611/224b962b54b34b9488b5d5a20fb89c86/c.html" target="_blank">新华网 — 欧佩克继续下调全球石油需求增长预期</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r4"><div class="card-hd"><div class="rank">4</div><div class="card-title">美国PPI飙涨6.5%创2022年以来最大年涨幅</div></div><div class="card-meta"><span class="src">AP News <span class="src-tag">行业分析</span></span><span class="dt">6月11日首发</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>美国5月PPI同比飙升6.5%，创2022年11月以来最大涨幅。能源价格暴涨是核心推手。</p><ul><li><strong>为什么重要：</strong>能源通胀全面传导，美联储加息压力大增</li><li><strong>短视频建议：</strong>"美国物价暴涨6.5%！都是油价惹的祸"</li></ul><div class="ref-links"><a href="https://apnews.com/article/producer-prices-inflation-economy-iran-137b9d3e10be5244547b3d94a9d6d940" target="_blank">AP News — US producer prices spike 6.5% in May</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r5"><div class="card-hd"><div class="rank">5</div><div class="card-title">&#x1f1e8;&#x1f1f3; 国家能源局负责人会见沙特阿美公司总裁，深化能源合作</div></div><div class="card-meta"><span class="src">国家能源局 <span class="src-tag">官方发布</span></span><span class="dt">6月11日首发</span><span class="vid">适合短视频</span></div><div class="card-body"><p>6月11日国家能源局负责人会见沙特阿美总裁，就原油供应保障及中长期合作进行交流。</p><ul><li><strong>为什么重要：</strong>中国加速多元化能源供应布局</li><li><strong>短视频建议：</strong>"中国紧急找油！沙特阿美总裁来北京谈判"</li></ul><div class="ref-links"><a href="https://www.nea.gov.cn/20260611/2ab38757947a4ee2989475336f206180/c.html" target="_blank">国家能源局 — 负责人会见沙特阿美公司总裁</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r6"><div class="card-hd"><div class="rank">6</div><div class="card-title">&#x1f1e8;&#x1f1f3; 天奇股份：油价上涨放大新能源车优势，利好出口</div></div><div class="card-meta"><span class="src">新浪财经 <span class="src-tag">公司互动</span></span><span class="dt">6月11日首发</span><span class="vid">适合短视频</span></div><div class="card-body"><p>天奇股份在互动平台表示油价上涨放大新能源车成本优势，对海外出口形成正向拉动。</p><ul><li><strong>为什么重要：</strong>高油价加速中国新能源产业链出海</li><li><strong>短视频建议：</strong>"油价越涨，中国新能源车卖得越好！"</li></ul><div class="ref-links"><a href="https://finance.sina.com.cn/stock/relnews/cn/2026-06-11/doc-iniaztwp4010978.shtml" target="_blank">新浪财经 — 天奇股份：油价上涨放大新能源车优势</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r7"><div class="card-hd"><div class="rank">7</div><div class="card-title">Enverus预测：布伦特原油2027年前持续高于100美元</div></div><div class="card-meta"><span class="src">WorldOil <span class="src-tag">行业分析</span></span><span class="dt">6月11日首发</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>Enverus预测霍尔木兹持续封锁将导致布伦特原油2027年前维持在100美元/桶以上。</p><ul><li><strong>为什么重要：</strong>权威机构预测高油价长期化</li><li><strong>短视频建议：</strong>"专家说油价100美元要持续好几年！"</li></ul><div class="ref-links"><a href="https://worldoil.com/news/2026/6/11/enverus-sees-brent-above-100-through-2027-after-hormuz-disruption/" target="_blank">WorldOil — Enverus sees Brent above $100 through 2027</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r8"><div class="card-hd"><div class="rank">8</div><div class="card-title">美国计划出借4000万桶战略石油储备平抑油价</div></div><div class="card-meta"><span class="src">新浪财经 <span class="src-tag">中文编译</span></span><span class="dt">6月11日首发</span><span class="vid">适合短视频</span></div><div class="card-body"><p>6月11日美国宣布出借4000万桶SPR，为伊朗战争以来最大规模投放。</p><ul><li><strong>为什么重要：</strong>大规模SPR投放显示美国对高油价的焦虑</li><li><strong>短视频建议：</strong>"美国把家底掏出来了！4000万桶战略油砸向市场"</li></ul><div class="ref-links"><a href="https://finance.sina.com.cn/wm/2026-06-11/doc-iniaztwp3963117.shtml" target="_blank">新浪财经 — 美国计划出借4000万桶战略石油储备</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r9"><div class="card-hd"><div class="rank">9</div><div class="card-title">科威特石油产量腰斩，全力推进能源通道扩容绕开霍尔木兹</div></div><div class="card-meta"><span class="src">新浪财经 <span class="src-tag">中文编译</span></span><span class="dt">6月11日首发</span><span class="vid">比较适合</span></div><div class="card-body"><p>受伊朗战争波及，科威特石油产量腰斩，正推进与邻国能源通道扩容绕开霍尔木兹。</p><ul><li><strong>为什么重要：</strong>全球石油运输版图面临重构</li><li><strong>短视频建议：</strong>"科威特石油产量腰斩！霍尔木兹封死了"</li></ul><div class="ref-links"><a href="https://finance.sina.com.cn/roll/2026-06-11/doc-iniazayx0901620.shtml" target="_blank">新浪财经 — 科威特石油产量腰斩</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r10"><div class="card-hd"><div class="rank">10</div><div class="card-title">&#x1f1e8;&#x1f1f3; 大唐发电在内蒙古成立新能源公司，加速能源转型</div></div><div class="card-meta"><span class="src">新浪财经 <span class="src-tag">中文编译</span></span><span class="dt">6月11日首发</span><span class="vid">比较适合</span></div><div class="card-body"><p>大唐发电等在内蒙古成立新能源公司，注册资本9000万。高油价倒逼央企资本涌入可再生能源。</p><ul><li><strong>为什么重要：</strong>高油价倒逼传统能源央企加速转型</li><li><strong>短视频建议：</strong>"油价越高，新能源越火——这家央企又出手了"</li></ul><div class="ref-links"><a href="https://finance.sina.com.cn/jjxw/2026-06-11/doc-iniazayx0849880.shtml" target="_blank">新浪财经 — 大唐发电成立新能源公司</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="data-box"><h3>&#x1f4ca; 核心数据速览</h3>
+<table class="data-table"><thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead><tbody>
+<tr><td>WTI原油</td><td class="num">$88-92区间震荡</td><td>多方</td></tr>
+<tr><td>布伦特原油</td><td class="num">$91-94（冲高回落）</td><td>WorldOil</td></tr>
+<tr><td>美国5月PPI</td><td class="num">同比+6.5%</td><td>AP News</td></tr>
+<tr><td>伊朗石油产量</td><td class="num">月降19%</td><td>财联社</td></tr>
+<tr><td>美国SPR</td><td class="num">出借4000万桶</td><td>新浪财经</td></tr>
+</tbody></table></div>
+<div class="data-box"><h3>&#x1f3ac; 短视频选题建议</h3>
+<div class="video-grid">
+<div class="video-tag vt-red">美伊互炸！油价过山车 <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50;&#x2b50; 突发</span></div>
+<div class="video-tag vt-red">伊朗石油产量暴跌19% <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50;&#x2b50; 中国能源</span></div>
+<div class="video-tag vt-orange">欧佩克不看好石油需求了 <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 权威</span></div>
+<div class="video-tag vt-orange">美国物价暴涨6.5% <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 财经</span></div>
+<div class="video-tag vt-blue">油价越涨新能源车卖得越好 <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 中国产业</span></div>
+<div class="video-tag vt-blue">美国掏4000万桶战略油 <span class="sub">&#x2b50;&#x2b50;&#x2b50; 国际</span></div>
+</div></div></div>
 
-<div class="card r1">
-  <div class="card-hd"><div class="rank">1</div><div class="card-title">IEA署长警告：石油库存持续下降，全球可能进入"红色警戒区" <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日国际能源署（IEA）署长接受财新专访时警告，全球石油库存持续下降，如果霍尔木兹海峡危机持续，市场可能进入"红色警戒区"。这是IEA迄今对能源供应危机发出的最严厉警告。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>IEA署长亲自警告"红色警戒"信号意义重大</li>
-      <li><strong>短视频建议：</strong>"IEA发出最严厉警告！全球石油要进入红色警戒"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://companies.caixin.com/2026-06-10/102452907.html" target="_blank">财新网 — IEA署长专访</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
+<!-- 周榜 -->
+<div class="tab-content" id="tabWeekly">
+<div class="day-header"><h2>&#x1f4ca; 7天趋势TOP10</h2><span class="badge">6月5日 ~ 6月11日</span></div>
+<div class="card r1"><div class="card-hd"><div class="rank">1</div><div class="card-title">美伊互炸！伊朗关闭霍尔木兹，油价暴涨 <span class="tag hot">&#x1f525; 热度最高</span></div></div><div class="card-meta"><span class="src">WorldOil <span class="src-tag">行业分析</span></span><span class="dt">6月11日</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>本周最大事件：美军第二波打击，伊朗导弹袭美军基地并宣布关闭霍尔木兹。特朗普突转口风取消打击。</p><ul><li><strong>为什么重要：</strong>美伊冲突是本轮油价波动的核心变量</li><li><strong>短视频建议：</strong>"美伊互炸！油价24小时过山车"</li></ul><div class="ref-links"><a href="https://www.worldoil.com/news/2026/6/11/trump-reverses-course-on-iran-strikes-easing-concerns-over-kharg-island/" target="_blank">WorldOil — Trump reverses course</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r2"><div class="card-hd"><div class="rank">2</div><div class="card-title">&#x1f1e8;&#x1f1f3; 中国5月CPI持平PPI超预期上涨，能源成本传导</div></div><div class="card-meta"><span class="src">国家统计局 <span class="src-tag">官方数据</span></span><span class="dt">6月10日</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>国家统计局数据：5月CPI持平，PPI超预期上涨，能源成本向下游传导。</p><ul><li><strong>为什么重要：</strong>中国能源成本传导压力加大</li><li><strong>短视频建议：</strong>"中国物价没涨但工厂成本涨了"</li></ul><div class="ref-links"><a href="https://www.stats.gov.cn/sj/sjjd/202606/t20260610_1963924.html" target="_blank">国家统计局 — 解读5月CPI和PPI数据</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r3"><div class="card-hd"><div class="rank">3</div><div class="card-title">美国PPI飙升6.5%、CPI涨4.2%，能源通胀来袭</div></div><div class="card-meta"><span class="src">AP News <span class="src-tag">行业分析</span></span><span class="dt">6月11日</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>美国5月通胀爆表，伊朗战争导致的能源价格上涨是直接推手。</p><ul><li><strong>为什么重要：</strong>全球通胀压力持续升温</li><li><strong>短视频建议：</strong>"美国物价暴涨都是油价惹的祸"</li></ul><div class="ref-links"><a href="https://apnews.com/article/producer-prices-inflation-economy-iran-137b9d3e10be5244547b3d94a9d6d940" target="_blank">AP News — US producer prices spike</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r4"><div class="card-hd"><div class="rank">4</div><div class="card-title">&#x1f1e8;&#x1f1f3; 新华网：欧佩克下调石油需求，中国因素成关键</div></div><div class="card-meta"><span class="src">新华网 <span class="src-tag">权威解读</span></span><span class="dt">6月11日</span><span class="vid">适合短视频</span></div><div class="card-body"><p>欧佩克下调全球石油需求增长预期，中国需求走弱是主因。</p><ul><li><strong>为什么重要：</strong>中国需求转变重塑全球石油市场格局</li><li><strong>短视频建议：</strong>"欧佩克说油卖不动了！因为中国不买了"</li></ul><div class="ref-links"><a href="https://www.news.cn/20260611/224b962b54b34b9488b5d5a20fb89c86/c.html" target="_blank">新华网 — 欧佩克下调需求预期</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r5"><div class="card-hd"><div class="rank">5</div><div class="card-title">&#x1f1e8;&#x1f1f3; 国家能源局会见沙特阿美，中国寻求原油供应保障</div></div><div class="card-meta"><span class="src">国家能源局 <span class="src-tag">官方发布</span></span><span class="dt">6月11日</span><span class="vid">适合短视频</span></div><div class="card-body"><p>在霍尔木兹封锁背景下，国家能源局会见沙特阿美总裁商讨供应保障。</p><ul><li><strong>为什么重要：</strong>中国积极寻求多元化能源供应</li><li><strong>短视频建议：</strong>"中国紧急找沙特谈油"</li></ul><div class="ref-links"><a href="https://www.nea.gov.cn/20260611/2ab38757947a4ee2989475336f206180/c.html" target="_blank">国家能源局 — 会见沙特阿美总裁</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r6"><div class="card-hd"><div class="rank">6</div><div class="card-title">&#x1f1e8;&#x1f1f3; 中国推迟50万桶/日炼油产能，原油进口创八年新低</div></div><div class="card-meta"><span class="src">OilPrice.com <span class="src-tag">行业分析</span></span><span class="dt">6月8日</span><span class="vid">适合短视频</span></div><div class="card-body"><p>霍尔木兹扰乱导致中国推迟50万桶/日炼油产能扩建。</p><ul><li><strong>为什么重要：</strong>中国需求疲软影响全球成品油供应</li><li><strong>短视频建议：</strong>"中国不买油了全球油价涨不动"</li></ul><div class="ref-links"><a href="https://oilprice.com/Latest-Energy-News/World-News/China-Delays-500000-Bpd-Of-Refining-Capacity-As-Hormuz-Disruptions-Deepen.html" target="_blank">OilPrice — China Delays Refining</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r7"><div class="card-hd"><div class="rank">7</div><div class="card-title">油价单日暴跌近5%！美能源部长称霍尔木兹通航量增加</div></div><div class="card-meta"><span class="src">新浪财经 <span class="src-tag">中文编译</span></span><span class="dt">6月10日</span><span class="vid">非常适合短视频</span></div><div class="card-body"><p>6月10日WTI暴跌5.7%，特朗普称协议可能"两三天内"达成。</p><ul><li><strong>为什么重要：</strong>油价对谈判信号极度敏感</li><li><strong>短视频建议：</strong>"油价一天暴跌5%第二天又暴涨"</li></ul><div class="ref-links"><a href="https://finance.sina.com.cn/roll/2026-06-10/doc-iniavshm4931786.shtml" target="_blank">新浪财经 — 油价跌近5%破90美元</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r8"><div class="card-hd"><div class="rank">8</div><div class="card-title">&#x1f1e8;&#x1f1f3; OPEC数据：伊朗石油产量暴跌19%，中国进口缺口加大</div></div><div class="card-meta"><span class="src">财联社 <span class="src-tag">权威财经</span></span><span class="dt">6月11日</span><span class="vid">适合短视频</span></div><div class="card-body"><p>OPEC月报显示伊朗石油产量月降19%，创战争以来最大降幅。</p><ul><li><strong>为什么重要：</strong>伊朗减产冲击中国原油进口</li><li><strong>短视频建议：</strong>"伊朗石油产量暴跌19%"</li></ul><div class="ref-links"><a href="https://www.cls.cn/detail/2397517" target="_blank">财联社 — 伊朗产量下降19%</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r9"><div class="card-hd"><div class="rank">9</div><div class="card-title">&#x1f1e8;&#x1f1f3; 大唐发电在内蒙古成立新能源公司，加速转型</div></div><div class="card-meta"><span class="src">新浪财经 <span class="src-tag">中文编译</span></span><span class="dt">6月11日</span><span class="vid">比较适合</span></div><div class="card-body"><p>大唐发电等在内蒙成立新能源公司，高油价倒逼央企转型。</p><ul><li><strong>为什么重要：</strong>高油价倒逼央企加速向新能源转型</li><li><strong>短视频建议：</strong>"油价越高新能源越火"</li></ul><div class="ref-links"><a href="https://finance.sina.com.cn/jjxw/2026-06-11/doc-iniazayx0849880.shtml" target="_blank">新浪财经 — 大唐发电新能源</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="card r10"><div class="card-hd"><div class="rank">10</div><div class="card-title">美国计划出借4000万桶战略石油储备</div></div><div class="card-meta"><span class="src">新浪财经 <span class="src-tag">中文编译</span></span><span class="dt">6月11日</span><span class="vid">比较适合</span></div><div class="card-body"><p>美国宣布出借4000万桶SPR，为伊朗战争以来最大规模投放。</p><ul><li><strong>为什么重要：</strong>大规模SPR投放显示美国焦虑</li><li><strong>短视频建议：</strong>"美国掏4000万桶战略油"</li></ul><div class="ref-links"><a href="https://finance.sina.com.cn/wm/2026-06-11/doc-iniaztwp3963117.shtml" target="_blank">新浪财经 — 美国出借SPR</a></div><div class="note-box" contenteditable="true"></div></div></div>
+<div class="data-box"><h3>&#x1f4ca; 核心数据速览</h3>
+<table class="data-table"><thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead><tbody>
+<tr><td>WTI原油</td><td class="num">$86-94区间波动</td><td>多方</td></tr>
+<tr><td>布伦特原油</td><td class="num">$89-94冲高回落</td><td>WorldOil</td></tr>
+<tr><td>伊朗石油产量</td><td class="num">月降19%</td><td>财联社</td></tr>
+<tr><td>美国5月PPI</td><td class="num">同比+6.5%</td><td>AP News</td></tr>
+<tr><td>中国5月PPI</td><td class="num">超预期上涨</td><td>统计局</td></tr>
+<tr><td>美国SPR</td><td class="num">出借4000万桶</td><td>新浪财经</td></tr>
+</tbody></table></div>
+<div class="data-box"><h3>&#x1f3ac; 短视频选题建议排行</h3>
+<div class="video-grid">
+<div class="video-tag vt-red">美伊互炸！霍尔木兹关闭 <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50;&#x2b50; 突发</span></div>
+<div class="video-tag vt-orange">油价24小时过山车 <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 解读</span></div>
+<div class="video-tag vt-orange">中国物价没涨工厂成本涨 <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 中国经济</span></div>
+<div class="video-tag vt-orange">伊朗石油产量暴跌19% <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 中国能源</span></div>
+<div class="video-tag vt-blue">中国不买油了 <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 财经科普</span></div>
+<div class="video-tag vt-blue">美国物价暴涨6.5% <span class="sub">&#x2b50;&#x2b50;&#x2b50;&#x2b50; 财经</span></div>
+<div class="video-tag vt-blue">油价一天暴跌5% <span class="sub">&#x2b50;&#x2b50;&#x2b50; 解读</span></div>
+<div class="video-tag vt-pink">大唐发电搞新能源 <span class="sub">&#x2b50;&#x2b50;&#x2b50; 中国企业</span></div>
+</div></div></div>
 
-<div class="card r2">
-  <div class="card-hd"><div class="rank">2</div><div class="card-title">油价走高！美国因直升机被击落对伊朗发动新打击 <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日美国因直升机被伊朗击落事件对伊朗发动新打击，国际油价走高。市场担心中东冲突进一步升级，霍尔木兹海峡的通行前景再度蒙上阴影。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>美伊冲突螺旋升级，油价面临新一轮上行压力</li>
-      <li><strong>短视频建议：</strong>"美军直升机被伊朗打下来了！油价瞬间暴涨"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://database.caixin.com/2026-06-10/102452703.html" target="_blank">财新网 — 油价走高美伊冲突</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
+<div class="source-legend">
+<span>中文编译</span> 转载自外电报道
+<span>行业分析</span> 专业能源媒体
+<span>权威财经</span> 知名财经资讯平台
+<span>权威解读</span> 国家权威媒体
+<span>官方数据</span> 国家权威机构发布
+<span>官方发布</span> 政府部门官方信息
 </div>
-
-<div class="card r3">
-  <div class="card-hd"><div class="rank">3</div><div class="card-title">能源内参：百度阿里比亚迪等被美纳入"中国军事企业清单" <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日能源内参汇总：百度、阿里、比亚迪、蔚来等被美国纳入"中国军事企业清单"；储能概念股高特电子登陆创业板首日暴涨625%。能源与科技领域的博弈持续升级。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>中美科技能源博弈加剧影响相关产业发展</li>
-      <li><strong>短视频建议：</strong>"美国又拉黑中国公司！百度阿里比亚迪都在内"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://companies.caixin.com/2026-06-10/102452714.html" target="_blank">财新网 — 能源内参</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
+<div class="footer">&#x1f6e2;&#xfe0f; 能源资讯日报 &#xb7; 每日更新 &#xb7; 仅供参考</div>
 </div>
-
-<div class="card r4">
-  <div class="card-hd"><div class="rank">4</div><div class="card-title">⚡ 5月CPI同比涨幅持平、PPI涨幅扩大，能源价格传导持续 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日国家统计局发布5月CPI和PPI数据，PPI涨幅扩大显示能源价格持续向工业端传导。上下游价格继续分化，高油价对制造业的影响正在加深。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>PPI涨幅扩大反映能源成本向工业传导加速</li>
-      <li><strong>短视频建议：</strong>"PPI涨了！油价太贵正在推高工业品价格"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://economy.caixin.com/2026-06-10/102452728.html" target="_blank">财新网 — 5月CPI/PPI数据</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r5">
-  <div class="card-hd"><div class="rank">5</div><div class="card-title">⚡ 风光项目如何避免"误伤"生态？研究指央地多层级规划或是出路 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日研究报告指出，中国风电、光伏项目快速扩张中需避免"误伤"生态环境，央地多层级协同规划是关键。在能源转型加速背景下，可再生能源发展与生态保护的平衡成为重要课题。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>可再生能源发展与生态保护的平衡关乎可持续性</li>
-      <li><strong>短视频建议：</strong>"中国光伏风电装太多也会破坏生态？研究这么说"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://science.caixin.com/2026-06-10/102452720.html" target="_blank">财新网 — 风光项目生态保护</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r6">
-  <div class="card-hd"><div class="rank">6</div><div class="card-title">⚡ 国家能源局发布2025年度中国电力市场发展报告 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 国家能源局</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日国家能源局发布《2025年度中国电力市场发展报告》，全面总结中国电力市场改革进展。报告显示中国可再生能源装机持续增长，电力市场化交易比例进一步提升。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>国家能源局报告是了解中国能源转型的权威窗口</li>
-      <li><strong>短视频建议：</strong>"国家能源局发布重磅报告！中国电力市场大揭秘"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="http://finance.sina.com.cn/wm/2026-06-10/doc-iniaxkrt1226344.shtml" target="_blank">新浪财经 — 国家能源局电力市场报告</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r7">
-  <div class="card-hd"><div class="rank">7</div><div class="card-title">⚡ 5月新能源汽车产销同比两位数增长 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 中汽协</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日中汽协发布数据，5月新能源汽车产销同比分别增长22.4%和14.4%。在高油价推动下新能源汽车持续热销，渗透率逼近六成。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>新能源车产销双增显示产业韧性</li>
-      <li><strong>短视频建议：</strong>"新能源车销量又涨了！油价越贵电车越好卖"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://finance.sina.com.cn/tech/roll/2026-06-10/doc-iniaxqxn2708101.shtml" target="_blank">新浪财经(中汽协) — 5月新能源车产销</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r8">
-  <div class="card-hd"><div class="rank">8</div><div class="card-title">⚡ 5月中国新能源汽车出口量同比增长1.1倍 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 海关总署</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日数据显示5月中国新能源汽车出口量同比增长1.1倍，海外需求持续旺盛。中国新能源汽车凭借性价比优势在全球市场快速扩张。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>新能源车出口暴涨显示中国制造全球竞争力</li>
-      <li><strong>短视频建议：</strong>"中国新能源车出口翻倍！外国人抢着买"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://finance.sina.com.cn/roll/2026-06-10/doc-iniaxqxk5933855.shtml" target="_blank">新浪财经(海关总署) — 新能源车出口增1.1倍</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r9">
-  <div class="card-hd"><div class="rank">9</div><div class="card-title">中国船企拿下超300亿元订单！船东对不同能源路线困惑 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日美国劳工部数据显示5月CPI同比上涨4.2%创三年来新高，能源价格是主要推动因素。高油价持续向消费者传导，市场关注美联储下一步利率决策。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>美国CPI创新高影响全球利率和资产定价</li>
-      <li><strong>短视频建议：</strong>"美国CPI爆了！油价太贵通胀创三年新高"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://www.iea.org/news/close-to-30-of-cars-sold-this-year-are-set-to-be-electric-as-countries-and-consumers-respond-to-energy-crisis" target="_blank">IEA — 今年近30%新车将是电动车</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div><div class="card r10">
-  <div class="card-hd"><div class="rank">10</div><div class="card-title">新旧交替逐鹿科技：2026年下半年全球经济展望 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>6月10日财新发布2026年下半年全球经济展望，指出能源危机与AI革命并行下的全球经济格局正在重塑。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>高油价与科技革命双重影响下半年经济走向</li>
-      <li><strong>短视频建议：</strong>"下半年经济怎么走？能源危机和AI谁影响更大"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://opinion.caixin.com/2026-06-10/102452781.html" target="_blank">财新网 — 船企订单船东困境</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div><div class="data-box">
-  <h3>📊 核心数据速览</h3>
-  <table class="data-table">
-    <thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead>
-    <tbody>
-      <tr><td>IEA警告</td><td class="num">石油库存"红色警戒"</td><td>财新网</td></tr>
-      <tr><td>美伊冲突</td><td class="num">美军直升机被击落油价走高</td><td>财新网</td></tr>
-      <tr><td>中美科技</td><td class="num">百度阿里比亚迪被列军事清单</td><td>财新网</td></tr>
-      <tr><td>CPI/PPI</td><td class="num">PPI涨幅扩大能源传导</td><td>财新网</td></tr>
-      <tr><td>风光生态</td><td class="num">可再生能源需避伤生态</td><td>财新网</td></tr>
-      <tr><td>电力市场</td><td class="num">国家能源局发布报告</td><td>国家能源局</td></tr>
-      <tr><td>新能源车</td><td class="num">产销同比两位数增长</td><td>中汽协</td></tr>
-      <tr><td>新能源车出口</td><td class="num">同比增长1.1倍</td><td>海关总署</td></tr>
-      <tr><td>美国库存</td><td class="num">持续下滑</td><td>OilPrice</td></tr>
-      <tr><td>OPEC产量</td><td class="num">2000年以来最低</td><td>O&G 360</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="data-box">
-  <h3>🎬 短视频选题建议</h3>
-  <div class="video-grid">
-    <div class="video-tag vt-red">IEA警告石油红色警戒<span class="sub">⭐⭐⭐⭐⭐ 权威声音</span></div>
-    <div class="video-tag vt-orange">美军直升机被伊朗击落<span class="sub">⭐⭐⭐⭐⭐ 突发新闻</span></div>
-    <div class="video-tag vt-orange">百度阿里比亚迪被美拉黑<span class="sub">⭐⭐⭐⭐ 科技博弈</span></div>
-    <div class="video-tag vt-blue">中国风光项目会不会破坏生态<span class="sub">⭐⭐⭐⭐ 绿色转型</span></div>
-    <div class="video-tag vt-blue">国家能源局电力报告<span class="sub">⭐⭐⭐⭐ 权威发布</span></div>
-    <div class="video-tag vt-blue">新能源车出口翻倍<span class="sub">⭐⭐⭐⭐ 中国制造</span></div>
-    <div class="video-tag vt-blue">OPEC产量24年最低<span class="sub">⭐⭐⭐⭐ 能源产业</span></div>
-    <div class="video-tag vt-pink">美国原油库存又跌了<span class="sub">⭐⭐⭐ 市场解读</span></div>
-  </div>
-</div>
-
-</div><div class="tab-content" id="tabWeekly">
-<div class="day-header">
-  <h2>📊 7天趋势TOP10</h2>
-  <span class="badge">6月4日 ~ 6月10日</span>
-</div>
-
-<div class="card r1">
-  <div class="card-hd"><div class="rank">1</div><div class="card-title">高油价致燃油车销量塌陷！预计全年车市零售同比下跌11% <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月8日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>财新报道高油价导致燃油车销量塌陷，预计全年车市零售同比下跌11%。消费者加速转向新能源车。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>高油价正在从根本上改变汽车消费结构</li>
-      <li><strong>短视频建议：</strong>"油价太贵燃油车卖不动了！全年车市要大跌"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://companies.caixin.com/m/2026-06-08/102452242.html" target="_blank">财新网 — 高油价致燃油车销量塌陷</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r2">
-  <div class="card-hd"><div class="rank">2</div><div class="card-title">伊朗袭击以色列危及停火！OPEC+象征性上调7月配额 <span class="tag hot">🔥 热度最高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月8日首发</span>
-    <span class="vid">✅ 非常适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>伊朗袭击以色列危及停火，油价飙升。OPEC+同意象征性上调7月产量配额，杯水车薪。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>中东局势反复与OPEC+博弈持续影响油价</li>
-      <li><strong>短视频建议：</strong>"伊朗打以色列油价飙了！OPEC+赶紧说增产"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://database.caixin.com/2026-06-08/102451900.html" target="_blank">财新网 — 伊朗袭击OPEC+增产</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r3">
-  <div class="card-hd"><div class="rank">3</div><div class="card-title">中国船企拿下超300亿元订单！船东对不同能源路线困惑 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月9日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>中国船企拿下超300亿元造船订单，但船东对不同能源路线选择陷入困境。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>中国造船业订单暴增显示全球贸易需求韧性</li>
-      <li><strong>短视频建议：</strong>"中国船企接到300亿大单！船东却不知道造啥船"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://companies.caixin.com/2026-06-09/102452470.html" target="_blank">财新网 — 船企订单船东困境</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r4">
-  <div class="card-hd"><div class="rank">4</div><div class="card-title">⚡ 今夏国家电网最大用电负荷将超13亿千瓦 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 财新网</span>
-    <span class="dt">📅 6月5日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>财新报道今夏国家电网最大用电负荷将超13亿千瓦，电力保供形势严峻。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>夏季用电高峰电力保供面临挑战</li>
-      <li><strong>短视频建议：</strong>"今年夏天用电要创新高！电网扛得住吗"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://companies.caixin.com/m/2026-06-05/102451173.html" target="_blank">财新网 — 国家电网今夏用电负荷</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r5">
-  <div class="card-hd"><div class="rank">5</div><div class="card-title">⚡ 光伏行业迈向更加理性、稳健、可持续的新阶段 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 新华网</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>新华网报道中国光伏行业正迈向更加理性、稳健、可持续的发展新阶段。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>光伏行业转型升级关乎能源转型进程</li>
-      <li><strong>短视频建议：</strong>"中国光伏行业变样了！从野蛮生长到高质量发展"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="http://www.xinhuanet.com/fortune/20260610/a66293e2d8694aedb07f1f3690f5d895/c.html" target="_blank">新华网 — 光伏行业新阶段</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r6">
-  <div class="card-hd"><div class="rank">6</div><div class="card-title">⚡ 国网能源院联合开展政策解读进企业活动 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 新华网</span>
-    <span class="dt">📅 6月8日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>国网能源研究院联合济南供电公司开展能源政策解读进企业活动，助企纾困。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>能源政策落地见效助力企业应对高油价</li>
-      <li><strong>短视频建议：</strong>"国家电网派人给企业送能源政策了！"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="http://www.xinhuanet.com/energy/20260608/47908f8fb437486081dc1fe2f96c376e/c.html" target="_blank">新华网 — 国网能源院政策解读</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r7">
-  <div class="card-hd"><div class="rank">7</div><div class="card-title">⚡ 绿电储能双轮驱动！山西探索能源与产业协同降碳 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 新浪财经</span>
-    <span class="dt">📅 6月3日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>山西探索绿电储能双轮驱动模式，推动能源与产业协同降碳。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>资源型省份能源转型为全国提供借鉴</li>
-      <li><strong>短视频建议：</strong>"山西也开始搞绿电了！传统煤省大转型"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://finance.sina.com.cn/jjxw/2026-06-03/doc-iniaavwu2608010.shtml" target="_blank">新浪财经 — 山西绿电储能</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r8">
-  <div class="card-hd"><div class="rank">8</div><div class="card-title">全球化工产业链供应紧缩风险积聚 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 新浪财经</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>伊朗战争导致的能源危机正在向化工产业链传导，全球化工供应链面临紧缩风险。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>能源危机通过化工产业链影响中国制造业</li>
-      <li><strong>短视频建议：</strong>"油价危机蔓延到化工了！中国制造业会受影响吗"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://finance.sina.com.cn/jjxw/2026-06-10/doc-iniawxzx1360673.shtml" target="_blank">新浪财经 — 全球化工供应链风险</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r9">
-  <div class="card-hd"><div class="rank">9</div><div class="card-title">英国石油公司高管接连离职，前路何去何从？ <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 新浪财经</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>英国石油公司高管接连离职，传统能源巨头面临人才流失和转型双重挑战。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>高管离职潮反映传统油企转型困境</li>
-      <li><strong>短视频建议：</strong>"英国石油高管集体出走！传统油企怎么了"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://finance.sina.com.cn/stock/usstock/c/2026-06-10/doc-iniaxeiv1345785.shtml" target="_blank">新浪财经 — 英国石油高管离职</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="card r10">
-  <div class="card-hd"><div class="rank">10</div><div class="card-title">⚡ 国家统计局解读5月CPI和PPI数据 <span class="tag warm">🔥 热度高</span></div></div>
-  <div class="card-meta">
-    <span class="src">📰 国家统计局</span>
-    <span class="dt">📅 6月10日首发</span>
-    <span class="vid">✅ 适合短视频</span>
-  </div>
-  <div class="card-body">
-    <p>国家统计局发布5月CPI和PPI数据解读，PPI涨幅扩大显示能源价格持续向工业端传导。</p>
-    <ul>
-      <li><strong>为什么重要：</strong>官方数据解读为理解经济形势提供权威参考</li>
-      <li><strong>短视频建议：</strong>"国家统计局数据来了！PPI涨了能源传导加速"</li>
-    </ul>
-    <div class="ref-links">📎 <a href="https://www.stats.gov.cn/sj/zxfbhjd/202606/t20260610_1963924.html" target="_blank">国家统计局 — CPI/PPI解读</a></div>
-    <div class="note-box" contenteditable="true"></div>
-  </div>
-</div>
-
-<div class="data-box">
-  <h3>📊 核心数据速览</h3>
-  <table class="data-table">
-    <thead><tr><th>指标</th><th>数据</th><th>来源</th></tr></thead>
-    <tbody>
-      <tr><td>燃油车</td><td class="num">销量塌陷车市跌11%</td><td>财新网</td></tr>
-      <tr><td>伊朗袭击</td><td class="num">OPEC+象征性增产</td><td>财新网</td></tr>
-      <tr><td>中国船企</td><td class="num">拿下超300亿订单</td><td>财新网</td></tr>
-      <tr><td>用电负荷</td><td class="num">国家电网超13亿千瓦</td><td>财新网</td></tr>
-      <tr><td>光伏行业</td><td class="num">迈向高质量发展</td><td>新华网</td></tr>
-      <tr><td>能源政策</td><td class="num">国网能源院解读</td><td>新华网</td></tr>
-      <tr><td>山西绿电</td><td class="num">储能双轮驱动</td><td>新浪财经</td></tr>
-      <tr><td>化工供应链</td><td class="num">紧缩风险积聚</td><td>新浪财经</td></tr>
-      <tr><td>英国石油</td><td class="num">高管接连离职</td><td>新浪财经</td></tr>
-      <tr><td>CPI/PPI</td><td class="num">国家统计局解读</td><td>国家统计局</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="data-box">
-  <h3>🎬 短视频选题建议排行</h3>
-  <div class="video-grid">
-    <div class="video-tag vt-red">燃油车销量塌陷<span class="sub">⭐⭐⭐⭐⭐ 行业变革</span></div>
-    <div class="video-tag vt-orange">伊朗袭击OPEC+增产<span class="sub">⭐⭐⭐⭐⭐ 地缘博弈</span></div>
-    <div class="video-tag vt-orange">中国船企300亿大单<span class="sub">⭐⭐⭐⭐ 中国制造</span></div>
-    <div class="video-tag vt-blue">今夏用电要创新高<span class="sub">⭐⭐⭐⭐ 能源安全</span></div>
-    <div class="video-tag vt-blue">中国光伏行业变样了<span class="sub">⭐⭐⭐⭐ 绿色转型</span></div>
-    <div class="video-tag vt-blue">山西也开始搞绿电了<span class="sub">⭐⭐⭐⭐ 区域转型</span></div>
-    <div class="video-tag vt-blue">化工供应链危机<span class="sub">⭐⭐⭐⭐ 产业影响</span></div>
-    <div class="video-tag vt-pink">英国石油高管出走<span class="sub">⭐⭐⭐ 企业动态</span></div>
-  </div>
-</div>
-<div class="source-legend" style="font-size:11px;color:#999;padding:10px 0;text-align:center;border-top:1px solid #eee;margin-top:10px;">
-  <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#e8e8e8;color:#666;font-size:9px;margin:0 4px;">中文编译</span> 转载自外电的中文报道 
-  <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#e8e8e8;color:#666;font-size:9px;margin:0 4px;">行业分析</span> 能源行业专业媒体分析
-</div>
-
-<div class="footer">
-  能源资讯日报 · 每日更新 · 数据来源：Tavily Search API · 仅供参考
-</div>
-
-</div>
-
-<script>
-function switchTab(btn, tabId) {
-  document.querySelectorAll(".tab-bar button").forEach(function(b) { b.classList.remove("active"); });
-  document.querySelectorAll(".tab-content").forEach(function(t) { t.classList.remove("active"); });
-  btn.classList.add("active");
-  document.getElementById(tabId).classList.add("active");
-}
-</script>
+<script>function switchTab(b,i){document.querySelectorAll('.tab-bar button').forEach(function(b){b.classList.remove('active')});document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});b.classList.add('active');document.getElementById(i).classList.add('active')}</script>
 </body>
 </html>
